@@ -1,0 +1,40 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+A	Pool/test.cpp	/^class A{$/;"	c	file:
+Accept	linuxLib/linComNet.h	/^int Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){$/;"	f
+Bind	linuxLib/linComNet.h	/^int Bind(int sockfd,const struct sockaddr *myaddr,socklen_t len){$/;"	f
+Close	linuxLib/linComNet.h	/^int Close(int sockfd){$/;"	f
+Connect	linuxLib/linComNet.h	/^int Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){$/;"	f
+DelayTime	linuxLib/Func.h	/^void DelayTime(double sec){$/;"	f
+ERROR	linuxLib/linComNet.h	/^const int ERROR=-1;$/;"	v
+GetTimeNow	linuxLib/Func.h	/^string GetTimeNow(){$/;"	f
+IntToStr	linuxLib/Func.h	/^string IntToStr(int value){$/;"	f
+LIN_COM_NET_H_	linuxLib/linComNet.h	2;"	d
+LIN_HEAD_H_	linuxLib/linHead.h	2;"	d
+Listen	linuxLib/linComNet.h	/^int Listen(int sockfd,int backlog){$/;"	f
+M_FUNC_H_	linuxLib/Func.h	2;"	d
+OBJ_POOL_H_	Pool/ObjPool.h	2;"	d
+OK	linuxLib/linComNet.h	/^const int OK=0;$/;"	v
+ObjPool	Pool/ObjPool.cpp	/^template <typename T> ObjPool<T>::ObjPool(int size)$/;"	f	class:ObjPool
+ObjPool	Pool/ObjPool.h	/^class ObjPool{$/;"	c
+Read	linuxLib/linComNet.h	/^ssize_t Read(int sockfd,void *buf,size_t len){$/;"	f
+Readn	linuxLib/linComNet.h	/^ssize_t Readn(int sockfd,void *vptr,size_t len){$/;"	f
+Select	linuxLib/linComNet.h	/^int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset,struct timeval *timeout){$/;"	f
+Socket	linuxLib/linComNet.h	/^int Socket(int family,int type,int protocol){$/;"	f
+StrToInt	linuxLib/Func.h	/^int StrToInt(string value){$/;"	f
+Write	linuxLib/linComNet.h	/^ssize_t Write(int sockfd,void *buf,size_t len){$/;"	f
+Writen	linuxLib/linComNet.h	/^ssize_t Writen(int sockfd,const void *vptr,size_t len){$/;"	f
+a	Pool/test.cpp	/^				int a=10;$/;"	m	class:A	file:
+allocateChunk	Pool/ObjPool.cpp	/^template <typename T> void ObjPool<T>::allocateChunk(){$/;"	f	class:ObjPool
+defaultSize	Pool/ObjPool.h	/^		static const int defaultSize=30;$/;"	m	class:ObjPool
+freeList	Pool/ObjPool.h	/^		queue<shared_ptr<T>> freeList;$/;"	m	class:ObjPool
+getObj	Pool/ObjPool.cpp	/^template<typename T> shared_ptr<T> ObjPool<T>::getObj(){$/;"	f	class:ObjPool
+mSize	Pool/ObjPool.h	/^		int mSize;$/;"	m	class:ObjPool
+main	Pool/test.cpp	/^int main(int argc,char **argv){$/;"	f
+releaseObj	Pool/ObjPool.cpp	/^template<typename T> void ObjPool<T>::releaseObj(shared_ptr<T> obj){$/;"	f	class:ObjPool
+rhs	Pool/ObjPool.h	/^		ObjPool<T> &operator=(const ObjPool<T> &rhs)=delete;$/;"	m	class:ObjPool
+src	Pool/ObjPool.h	/^		ObjPool(const ObjPool<T> &src)=delete;$/;"	m	class:ObjPool

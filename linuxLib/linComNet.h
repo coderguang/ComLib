@@ -125,6 +125,33 @@ ssize_t Write(int sockfd,void *buf,size_t len){
 
 }
 
+ssize_t Readn(int sockfd,void *vptr,size_t len){
+	size_t nleft;
+	ssize_t nread;
+	char *ptr;
+	ptr=(char*)vptr;
+	
+	nleft=len;
+
+	while(nleft>0){
+		if((nread=read(sockfd,ptr,nleft))<0){
+			if(errno==EINTR){
+				std::cout<<"should readn aggin"<<std::endl;
+				nread=0;//read again
+			}else{
+				std::cout<<"readn failed"<<std::endl;
+				return ERROR;
+			}
+		}else if(nread==0){
+			break;//EOF
+		}
+		nleft=nleft-nread;
+		ptr=ptr+nread;
+	}
+	return (len-nleft);
+}
+
+
 ssize_t Writen(int sockfd,const void *vptr,size_t len){
 	size_t nleft;
 	ssize_t nwritten;
@@ -148,6 +175,9 @@ ssize_t Writen(int sockfd,const void *vptr,size_t len){
 	}
 	return len;
 }
+
+
+
 
 
 #endif
