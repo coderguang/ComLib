@@ -21,7 +21,7 @@
 const int OK=0;
 const int ERROR=-1;
 
-int Socket(int family,int type,int protocol){
+static int Socket(int family,int type,int protocol){
 	int temp=socket(family,type,protocol);
 	if(ERROR==temp){
 		std::cout<<"socket init failed!"<<std::endl;
@@ -30,7 +30,7 @@ int Socket(int family,int type,int protocol){
 	return temp;
 }
 
-int Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){
+static int Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){
 	int temp=connect(sockfd,servaddr,addrlen);
 	if(ERROR==temp){
 		std::cout<<"connect failed!"<<std::endl;
@@ -40,7 +40,7 @@ int Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){
 
 }
 
-int Bind(int sockfd,const struct sockaddr *myaddr,socklen_t len){
+static int Bind(int sockfd,const struct sockaddr *myaddr,socklen_t len){
 	int temp=bind(sockfd,myaddr,len);
 	if(ERROR==temp){
 		std::cout<<"bind failed!"<<std::endl;
@@ -49,7 +49,7 @@ int Bind(int sockfd,const struct sockaddr *myaddr,socklen_t len){
 	return OK;
 }
 
-int Listen(int sockfd,int backlog){
+static int Listen(int sockfd,int backlog){
 	int temp=listen(sockfd,backlog);
 	if(ERROR==temp){
 		std::cout<<"listen failed!"<<std::endl;
@@ -58,7 +58,7 @@ int Listen(int sockfd,int backlog){
 	return OK;
 }
 
-int Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){
+static int Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){
 	int temp=accept(sockfd,cliaddr,addrlen);
 	if(ERROR==temp){
 		std::cout<<"accept failed!"<<std::endl;
