@@ -68,7 +68,7 @@ static int Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){
 }
 
 
-int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset,struct timeval *timeout){
+static int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset,struct timeval *timeout){
 	int temp=select(maxfdp1,readset,writeset,exceptset,timeout);
 	if(temp>0){
 		return temp;
@@ -83,7 +83,7 @@ int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset,struct
 	return ERROR; 
 }
 
-int Close(int sockfd){
+static int Close(int sockfd){
 	int temp=close(sockfd);
 	if(temp==OK){
 		std::cout<<"close socket "<<sockfd<<" success!"<<std::endl;
@@ -94,7 +94,7 @@ int Close(int sockfd){
 
 }
 
-ssize_t Read(int sockfd,void *buf,size_t len){
+static ssize_t Read(int sockfd,void *buf,size_t len){
 	int temp=read(sockfd,buf,len);
 	if(temp<0){
 		if(errno==EINTR){//call read() again
@@ -110,7 +110,7 @@ ssize_t Read(int sockfd,void *buf,size_t len){
 }
 
 
-ssize_t Write(int sockfd,void *buf,size_t len){
+static ssize_t Write(int sockfd,void *buf,size_t len){
 	int temp=write(sockfd,buf,len);
 	if(temp<=0){
 		if(temp<0&&errno==EINTR){
@@ -125,7 +125,7 @@ ssize_t Write(int sockfd,void *buf,size_t len){
 
 }
 
-ssize_t Readn(int sockfd,void *vptr,size_t len){
+static ssize_t Readn(int sockfd,void *vptr,size_t len){
 	size_t nleft;
 	ssize_t nread;
 	char *ptr;
@@ -152,7 +152,7 @@ ssize_t Readn(int sockfd,void *vptr,size_t len){
 }
 
 
-ssize_t Writen(int sockfd,const void *vptr,size_t len){
+static ssize_t Writen(int sockfd,const void *vptr,size_t len){
 	size_t nleft;
 	ssize_t nwritten;
 	const char *ptr;
