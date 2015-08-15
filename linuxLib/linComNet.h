@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/select.h>
+#include <poll.h>
 #include <sys/time.h>
 #include <unistd.h> //for close
 #include <errno.h> //for errno
@@ -72,10 +73,10 @@ static int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset
 	int temp=select(maxfdp1,readset,writeset,exceptset,timeout);
 	if(temp>0){
 		return temp;
-	}else if(temp==0){
+	}else if(0==temp){
 		std::cout<<"select time out!"<<std::endl;
 		return 0;
-	}else if(temp==ERROR){
+	}else if(ERROR==temp){
 		std::cout<<"select occure error!"<<std::endl;
 		return ERROR;
 	}
@@ -83,9 +84,27 @@ static int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset
 	return ERROR; 
 }
 
+
+static int Poll(struct pollfd *fdarray,unsigned long nfds,int timeout){
+	int temp=poll(fdarray,nfds,timeout);
+	if(temp>0){
+		return temp;	
+	}else if(0==temp){
+		std::cout<<"poll time out!"<<std::endl;\
+		return 0;
+	}else if(ERROR==temp){
+		std::cout<<"select occure error!"<<std::endl;
+		return ERROR;
+	}
+	std::cout<<"select occure something unexcepted!please debug the application!"<<std::endl;
+	return ERROR; 
+}
+
+
+
 static int Close(int sockfd){
 	int temp=close(sockfd);
-	if(temp==OK){
+	if(OK==temp){
 		std::cout<<"close socket "<<sockfd<<" success!"<<std::endl;
 	}else{
 		std::cout<<"close socket "<<sockfd<<" failed!"<<std::endl;
