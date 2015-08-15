@@ -1,0 +1,3 @@
+	rm *.h.gch
+	g++ -Wall -c Func.h
+	g++ -Wall -c linComNet.h
