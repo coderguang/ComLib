@@ -1,0 +1,3 @@
+clang++ -Wall -c *.cpp
+ar -crv ../lib/liblog.a *.o
+

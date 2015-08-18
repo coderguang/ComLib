@@ -24,6 +24,9 @@ class GTypeTransform{
 
 };
 
+#define ToStr(n) GTypeTransform::IntToStr(n)
+
+
   }
 }
 #endif

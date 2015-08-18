@@ -9,15 +9,7 @@ namespace GCommon{
 
 class GLog{
   public:
-    static void Log(std::string& msg,std::string type="default"){
-		std::cout<<"type="<<type<<",msg="<<msg<<std::endl;
-	
-	}
-	  
-
-
-
-
+    static void Log(std::string& msg,std::string type="default");
 };
 
   }
