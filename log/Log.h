@@ -5,11 +5,11 @@
 #include <iostream>
 
 namespace GCommon{
-  namespace GLog{
+  namespace GLogger{
 
 class GLog{
   public:
-    static void Log(std::string& msg,std::string type="default");
+    static void Log(std::string msg,std::string type="default");
 };
 
   }

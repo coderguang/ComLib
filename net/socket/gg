@@ -1,1 +1,3 @@
-clang++ -Wall -c  *cpp -l*.h
+rm *.gch *.o *~
+clang++ -o test.o -Wall -c -g *cpp ../../lib/liblog.a ../../lib/libutil.a 
+

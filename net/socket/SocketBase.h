@@ -52,6 +52,12 @@ class GSocketBase{
 
     static int Poll(struct pollfd *fdarray,unsigned long nfds,int timeout);
 
+    static int Epoll_create(int maxfd);
+
+    static int Epoll_ctl(int epfd,int op,int fd,struct epoll_event *event);
+
+    static int Epoll_wait(int epfd,struct epoll_event *events,int maxevents,int timeout);
+
     static int Close(int sockfd);
 
     static ssize_t Read(int sockfd,void *buf,size_t len);
