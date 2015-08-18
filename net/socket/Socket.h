@@ -16,13 +16,17 @@ static const int MAX_USER_SIZE=99999;
 
 class GSocket{
   public:
-    GSocket(int ioType,int family,int sockType,int protocol,int port,int backlog);
+    GSocket(int IOType,int family,int sockType,int protocol,int port,int backlog);
     
     bool init(voFuncInt *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except);
 
     bool send(int sockfd,char *buf);
    
     bool close(int sockfd);
+
+    int getCounter(){
+      return counter;
+    }
   
   protected:
     void SelectLoop();
@@ -43,8 +47,11 @@ class GSocket{
    
     int sclient[FD_SETSIZE];//use for select mode
     
-    struct epollfd eclient[MAX_USER_SIZE];
-    
+    struct epollfd eclient[MAX_USER_SIZE];//use for poll mode
+   
+    struct epoll_event *events;//use for epoll mode 
+    struct epoll_event ev;//use for epoll mode
+   
 
 
 };

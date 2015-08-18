@@ -1,3 +1,4 @@
 rm *.gch *.o *~
-clang++ -o test.o -Wall -c -g *cpp ../../lib/liblog.a ../../lib/libutil.a 
+clang++ -o SocketBase.o -Wall -c -g SocketBase.cpp ../../lib/liblog.a ../../lib/libutil.a  -std=c++11
 
+clang++ -o Socket.o -Wall -c -g Socket.cpp ../../lib/liblog.a ../../lib/libutil.a -std=c++11
