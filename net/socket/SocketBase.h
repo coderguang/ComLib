@@ -68,6 +68,8 @@ class CSocketBase{
 
     static ssize_t Writen(int sockfd,const void *vptr,size_t len);
 
+    static ssize_t Recv(int sockfd,void *buf,size_t len,int flags);
+
 
 };
     }

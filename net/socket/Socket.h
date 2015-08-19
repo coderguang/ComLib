@@ -12,7 +12,7 @@ namespace GCommon{
 
 using namespace GCommon::GUtil;
 
-static const int MAX_BUF_SIZE=10240;//the socket read and write buf size
+static const int MAX_BUF_SIZE=128;//the socket read and write buf size
 static const int MAX_USER_SIZE=99999;
 
 enum IOType{IOSelect,IOPoll,IOEpoll};
@@ -20,19 +20,18 @@ enum IOType{IOSelect,IOPoll,IOEpoll};
 
 class CSocket{
   public:
-    CSocket(IOType type,int family,int sockType,int protocol,int port,int backlog);
+    CSocket(IOType type,int family,int sockType,int protocol,int port,int backlog,struct epoll_event evs);
    
     virtual ~CSocket();
     
     void init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except);
 
-    void send(int sockfd,char *buf);
+    void send(int sockfd,const char* buf);
    
     void close(int sockfd);
 
-    int getCounter(){
-      return counter;
-    }
+    int getCounter();
+    
   
   protected:
     void selectLoop();
@@ -67,7 +66,7 @@ class CSocket{
    
     int sclient[FD_SETSIZE];//use for select mode
     
-    struct pollfd eclient[MAX_USER_SIZE];//use for poll mode
+    struct pollfd pclient[MAX_USER_SIZE];//use for poll mode
     
     int epfd;
     struct epoll_event *events;//use for epoll mode 

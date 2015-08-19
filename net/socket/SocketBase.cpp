@@ -203,6 +203,20 @@ ssize_t Writen(int sockfd,const void *vptr,size_t len){
 }
 
 
+ssize_t CSocketBase::Recv(int sockfd,void *buf,size_t len,int flags){
+  int temp=recv(sockfd,buf,len,flags);
+  if(temp<0){
+    if(errno==EINTR){//should call read again
+      temp=0;
+      return OK;
+    }else{
+      CLog::Log("recv socket error!","CSocketBase");
+      return ERROR;
+    }
+  }else{
+    return temp;
+  }
+}
 
 
 
