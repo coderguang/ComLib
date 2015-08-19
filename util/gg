@@ -1,2 +1,0 @@
-rm *gch *~ *.o
-clang++ -Wall -c *.cpp
