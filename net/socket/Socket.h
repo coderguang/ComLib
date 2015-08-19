@@ -3,6 +3,8 @@
 
 #include "SocketBase.h"
 #include "../../util/FuncPtr.h"
+#include <map>
+#include <string.h>
 
 namespace GCommon{
   namespace GNet{
@@ -11,48 +13,70 @@ namespace GCommon{
 using namespace GCommon::GUtil;
 
 static const int MAX_BUF_SIZE=10240;//the socket read and write buf size
-//static const FD_SETSIZE=1024;
 static const int MAX_USER_SIZE=99999;
+
+enum IOType{IOSelect,IOPoll,IOEpoll};
+
 
 class GSocket{
   public:
-    GSocket(int IOType,int family,int sockType,int protocol,int port,int backlog);
-    
-    bool init(voFuncInt *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except);
-
-    bool send(int sockfd,char *buf);
+    GSocket(IOType type,int family,int sockType,int protocol,int port,int backlog);
    
-    bool close(int sockfd);
+    virtual ~GSocket();
+    
+    void init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except);
+
+    void send(int sockfd,char *buf);
+   
+    void close(int sockfd);
 
     int getCounter(){
       return counter;
     }
   
   protected:
-    void SelectLoop();
+    void selectLoop();
     
-    void PollLoop();
+    void pollLoop();
  
-    void EpollLoop();
+    void epollLoop();
 
   private:
     GSocket(GSocket&)=delete;
     GSocket operator=(GSocket&)=delete;
+
+    IOType ioType;
+
+    //socket common variable
+    int listenfd;
+    int connfd;
+    struct sockaddr_in serveraddr;
+    struct sockaddr_in clientaddr;
   
+    //data buf
     char buf[MAX_BUF_SIZE];
     
     int counter;//the sockfd counter
+
+    
+    std::map<int,int> sockfdMap;
+
+    int maxIndex;//use for select and poll
 
     fd_set rset,allset;//use for select mode
    
     int sclient[FD_SETSIZE];//use for select mode
     
-    struct epollfd eclient[MAX_USER_SIZE];//use for poll mode
-   
+    struct pollfd eclient[MAX_USER_SIZE];//use for poll mode
+    
+    int epfd;
     struct epoll_event *events;//use for epoll mode 
     struct epoll_event ev;//use for epoll mode
    
-
+    voFuncIntStr *newConnects;
+    voFuncIntCharptr *newDatas;
+    voFuncInt *disconnects;
+    voFuncIntInt *excepts;
 
 };
 
