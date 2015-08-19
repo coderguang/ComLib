@@ -15,7 +15,7 @@
 namespace GCommon{
   namespace GUtil{
 
-class GTypeTransform{
+class CTypeTransform{
   public:
     static std::string IntToStr(int value);
 
@@ -24,7 +24,7 @@ class GTypeTransform{
 
 };
 
-#define ToStr(n) GTypeTransform::IntToStr(n)
+#define ToStr(n) CTypeTransform::IntToStr(n)
 
 
   }

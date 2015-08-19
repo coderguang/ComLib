@@ -1,7 +1,7 @@
 #include "Time.h"
 
 using namespace GCommon::GUtil;
-std::string GTime::getTimeNow(){
+std::string CTime::getTimeNow(){
     char *s;
     time_t now;
     time(&now);
@@ -10,7 +10,7 @@ std::string GTime::getTimeNow(){
     return t;	
 }
 
-void GTime::delayTime(double sec){
+void CTime::delayTime(double sec){
     time_t start_time,cur_time;
     time(&start_time);
     do{

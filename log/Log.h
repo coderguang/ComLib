@@ -5,9 +5,9 @@
 #include <iostream>
 
 namespace GCommon{
-  namespace GLogger{
+  namespace GLog{
 
-class GLog{
+class CLog{
   public:
     static void Log(std::string msg,std::string type="default");
 };

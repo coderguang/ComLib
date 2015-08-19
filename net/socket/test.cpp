@@ -18,10 +18,12 @@ void disconn(int sockfd){
 
 int main(int argc,char **argv){
 
-  GSocket msock(IOSelect,AF_INET,SOCK_STREAM,0,9000,10);
+  CSocket msock(IOSelect,AF_INET,SOCK_STREAM,0,9000,10);
   voFuncIntStr f1=newConn;
+  voFuncIntCharptr f2=newData;
+  voFuncInt f3=disconn;
 
-  msock.init(newConn,newData,disconn,NULL);
+  msock.init(&f1,&f2,&f3,NULL);
 
 
 }

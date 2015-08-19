@@ -5,7 +5,7 @@
 namespace GCommon{
   namespace GUtil{
 
-class GTime{
+class CTime{
   public:
     static std::string getTimeNow();
 

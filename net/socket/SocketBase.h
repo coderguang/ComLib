@@ -36,7 +36,7 @@ const int ERROR=-1;
  *
  */
 
-class GSocketBase{
+class CSocketBase{
   public:
     static int Socket(int family,int type,int protocol);
 	

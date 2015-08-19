@@ -18,11 +18,11 @@ static const int MAX_USER_SIZE=99999;
 enum IOType{IOSelect,IOPoll,IOEpoll};
 
 
-class GSocket{
+class CSocket{
   public:
-    GSocket(IOType type,int family,int sockType,int protocol,int port,int backlog);
+    CSocket(IOType type,int family,int sockType,int protocol,int port,int backlog);
    
-    virtual ~GSocket();
+    virtual ~CSocket();
     
     void init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except);
 
@@ -42,8 +42,8 @@ class GSocket{
     void epollLoop();
 
   private:
-    GSocket(GSocket&)=delete;
-    GSocket operator=(GSocket&)=delete;
+    CSocket(CSocket&)=delete;
+    CSocket operator=(CSocket&)=delete;
 
     IOType ioType;
 

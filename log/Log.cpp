@@ -1,6 +1,6 @@
 #include "Log.h"
-using namespace GCommon::GLogger;
+using namespace GCommon::GLog;
 
-void GLog::Log(std::string msg,std::string type){
+void CLog::Log(std::string msg,std::string type){
     std::cout<<"type="<<type<<",msg="<<msg<<std::endl;
 }

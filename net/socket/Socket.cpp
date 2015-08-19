@@ -5,13 +5,13 @@
 #include "../../util/TypeTransform.h"
 
 using namespace GCommon::GNet::GSocket;
-using namespace GCommon::GLogger;
+using namespace GCommon::GLog;
 
-GSocket::GSocket(IOType type,int family,int sockType,int protocol,int port,int backlog){
+CSocket::CSocket(IOType type,int family,int sockType,int protocol,int port,int backlog){
 
   ioType=type;
 
-  listenfd=GSocketBase::Socket(family,sockType,protocol);
+  listenfd=CSocketBase::Socket(family,sockType,protocol);
    
   bzero(&serveraddr,sizeof(serveraddr));
 
@@ -19,9 +19,9 @@ GSocket::GSocket(IOType type,int family,int sockType,int protocol,int port,int b
   serveraddr.sin_port=htons(port);
   serveraddr.sin_addr.s_addr=INADDR_ANY;
 
-  GSocketBase::Bind(listenfd,(struct sockaddr*)&serveraddr,sizeof(serveraddr));
+  CSocketBase::Bind(listenfd,(struct sockaddr*)&serveraddr,sizeof(serveraddr));
 
-  GSocketBase::Listen(listenfd,backlog);
+  CSocketBase::Listen(listenfd,backlog);
 
   maxIndex=listenfd;//maxIndex use only for select and poll
   
@@ -31,7 +31,10 @@ GSocket::GSocket(IOType type,int family,int sockType,int protocol,int port,int b
 
 }
 
-void GSocket::init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except){
+CSocket::~CSocket(){
+}
+
+void CSocket::init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except){
   newConnects=newConnect;
   newDatas=newData;
   disconnects=disconnect;
@@ -47,12 +50,12 @@ void GSocket::init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt 
         epollLoop();
         break;
    default:
-        GLog::Log("invaild ioType input!","GSocket");
+        CLog::Log("invaild ioType input!","CSocket");
   }
 
 }
 
-void GSocket::selectLoop(){
+void CSocket::selectLoop(){
 
    for(int i=0;i<FD_SETSIZE;i++){//insure the sclient every elements is -1 before select
      sclient[i]=-1;
@@ -68,15 +71,15 @@ void GSocket::selectLoop(){
 
      rset=allset;
      
-     int nready=GSocketBase::Select(maxIndex+1,&rset,NULL,NULL,NULL);
+     int nready=CSocketBase::Select(maxIndex+1,&rset,NULL,NULL,NULL);
 
      if(FD_ISSET(listenfd,&rset)){//when a new connections come,add it to set and sclient array and sockMap;
        socklen_t clilen=sizeof(clientaddr);
-       connfd=GSocketBase::Accept(listenfd,(struct sockaddr *)&clientaddr,&clilen);
+       connfd=CSocketBase::Accept(listenfd,(struct sockaddr *)&clientaddr,&clilen);
 
        std::string ip=inet_ntoa(clientaddr.sin_addr);
        
-       GLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,"GSocket");
+       CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,"CSocket");
 
        int index=1;
        for(index=1;index<FD_SETSIZE;index++){
@@ -95,7 +98,7 @@ void GSocket::selectLoop(){
        }
        
        if(FD_SETSIZE==index){
-         GLog::Log("too much sock connect,array is full!,index="+ToStr(index),"GSocket");
+         CLog::Log("too much sock connect,array is full!,index="+ToStr(index),"CSocket");
        }
        if(index>maxIndex){//maxIndex in sclient[]
          maxIndex=index;
@@ -116,9 +119,9 @@ void GSocket::selectLoop(){
       if(FD_ISSET(sockfd,&rset)){
         memset(buf,sizeof(buf),'\0');
 	int nread;
-        if((nread=GSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))<0){
-          GLog::Log("socket close by client or socket occur error","GSocket");
-          GSocketBase::Close(sockfd);
+        if((nread=CSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))<0){
+          CLog::Log("socket close by client or socket occur error","CSocket");
+          CSocketBase::Close(sockfd);
           sclient[i]=-1;
           //sockfdMap[sockfd]=-1;
           counter--;
