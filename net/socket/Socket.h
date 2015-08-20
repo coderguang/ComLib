@@ -60,7 +60,8 @@ class CSocket{
     
     std::map<int,int> sockfdMap;
 
-    int maxIndex;//use for select and poll
+    int maxfd;//the max sockfd ,use for select
+    int maxIndex;//the max index in pclient,use for poll
 
     fd_set rset,allset;//use for select mode
    

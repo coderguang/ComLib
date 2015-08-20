@@ -4,37 +4,333 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-A	Pool/test.cpp	/^class A{$/;"	c	file:
-Accept	linuxLib/linComNet.h	/^int Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){$/;"	f
-Bind	linuxLib/linComNet.h	/^int Bind(int sockfd,const struct sockaddr *myaddr,socklen_t len){$/;"	f
-Close	linuxLib/linComNet.h	/^int Close(int sockfd){$/;"	f
-Connect	linuxLib/linComNet.h	/^int Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){$/;"	f
-DelayTime	linuxLib/Func.h	/^void DelayTime(double sec){$/;"	f
-ERROR	linuxLib/linComNet.h	/^const int ERROR=-1;$/;"	v
-GetTimeNow	linuxLib/Func.h	/^string GetTimeNow(){$/;"	f
-IntToStr	linuxLib/Func.h	/^string IntToStr(int value){$/;"	f
-LIN_COM_NET_H_	linuxLib/linComNet.h	2;"	d
-LIN_HEAD_H_	linuxLib/linHead.h	2;"	d
-Listen	linuxLib/linComNet.h	/^int Listen(int sockfd,int backlog){$/;"	f
-M_FUNC_H_	linuxLib/Func.h	2;"	d
+Accept	net/socket/SocketBase.cpp	/^int CSocketBase::Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){$/;"	f	class:CSocketBase
+Args	json/value.h	/^      typedef std::vector<PathArgument> Args;$/;"	t	class:Json::Path
+ArrayIndex	json/value.h	/^      typedef UInt ArrayIndex;$/;"	t	class:Json::Value
+ArrayIndex	json/value.h	/^      typedef Value::ArrayIndex ArrayIndex;$/;"	t	class:Json::ValueInternalArray
+Bind	net/socket/SocketBase.cpp	/^int CSocketBase::Bind(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){$/;"	f	class:CSocketBase
+BucketIndex	json/value.h	/^      typedef unsigned int BucketIndex;$/;"	t	class:Json::ValueInternalMap
+CLog	log/Log.h	/^class CLog{$/;"	c	namespace:GCommon::GLog
+CPPTL_AUTOLINK_DLL	json/autolink.h	12;"	d
+CPPTL_AUTOLINK_DLL	json/autolink.h	14;"	d
+CPPTL_AUTOLINK_NAME	json/autolink.h	11;"	d
+CPPTL_JSON_FEATURES_H_INCLUDED	json/features.h	2;"	d
+CPPTL_JSON_H_INCLUDED	json/value.h	2;"	d
+CPPTL_JSON_READER_H_INCLUDED	json/reader.h	2;"	d
+CSocket	net/socket/Socket.cpp	/^CSocket::CSocket(IOType type,int family,int sockType,int protocol,int port,int backlog,struct epoll_event evs){$/;"	f	class:CSocket
+CSocket	net/socket/Socket.h	/^class CSocket{$/;"	c	namespace:GCommon::GNet::GSocket
+CSocketBase	net/socket/SocketBase.h	/^class CSocketBase{$/;"	c	namespace:GCommon::GNet::GSocket
+CTime	util/Time.h	/^class CTime{$/;"	c	namespace:GCommon::GUtil
+CTypeTransform	util/TypeTransform.h	/^class CTypeTransform{$/;"	c	namespace:GCommon::GUtil
+CZString	json/value.h	/^      class CZString $/;"	c	class:Json::Value
+Char	json/reader.h	/^      typedef char Char;$/;"	t	class:Json::Reader
+ChildValues	json/writer.h	/^      typedef std::vector<std::string> ChildValues;$/;"	t	class:Json::StyledStreamWriter
+ChildValues	json/writer.h	/^      typedef std::vector<std::string> ChildValues;$/;"	t	class:Json::StyledWriter
+Close	net/socket/SocketBase.cpp	/^int CSocketBase::Close(int sockfd){$/;"	f	class:CSocketBase
+CommentInfo	json/value.h	/^      struct CommentInfo$/;"	s	class:Json::Value
+CommentPlacement	json/value.h	/^   enum CommentPlacement$/;"	g	namespace:Json
+Connect	net/socket/SocketBase.cpp	/^int CSocketBase::Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){$/;"	f	class:CSocketBase
+DuplicationPolicy	json/value.h	/^         enum DuplicationPolicy $/;"	g	class:Json::Value::CZString
+ERROR	net/socket/SocketBase.h	/^const int ERROR=-1;$/;"	m	namespace:GCommon::GNet::GSocket
+Epoll_create	net/socket/SocketBase.cpp	/^int CSocketBase::Epoll_create(int maxfd){$/;"	f	class:CSocketBase
+Epoll_ctl	net/socket/SocketBase.cpp	/^int CSocketBase::Epoll_ctl(int epfd,int op,int fd,struct epoll_event *event){$/;"	f	class:CSocketBase
+Epoll_wait	net/socket/SocketBase.cpp	/^int CSocketBase::Epoll_wait(int epfd,struct epoll_event *events,int maxfd,int timeout){$/;"	f	class:CSocketBase
+ErrorInfo	json/reader.h	/^      class ErrorInfo$/;"	c	class:Json::Reader
+Errors	json/reader.h	/^      typedef std::deque<ErrorInfo> Errors;$/;"	t	class:Json::Reader
+FastWriter	json/writer.h	/^   class JSON_API FastWriter : public Writer$/;"	c	namespace:Json
+Features	json/features.h	/^   class JSON_API Features$/;"	c	namespace:Json
+GCommon	log/Log.h	/^namespace GCommon{$/;"	n
+GCommon	net/socket/Socket.h	/^namespace GCommon{$/;"	n
+GCommon	net/socket/SocketBase.h	/^namespace GCommon{$/;"	n
+GCommon	util/FuncPtr.h	/^namespace GCommon{$/;"	n
+GCommon	util/Time.h	/^namespace GCommon{$/;"	n
+GCommon	util/TypeTransform.h	/^namespace GCommon{$/;"	n
+GLog	log/Log.h	/^  namespace GLog{$/;"	n	namespace:GCommon
+GNet	net/socket/Socket.h	/^  namespace GNet{$/;"	n	namespace:GCommon
+GNet	net/socket/SocketBase.h	/^  namespace GNet{$/;"	n	namespace:GCommon
+GSocket	net/socket/Socket.h	/^    namespace GSocket{$/;"	n	namespace:GCommon::GNet
+GSocket	net/socket/SocketBase.h	/^    namespace GSocket{$/;"	n	namespace:GCommon::GNet
+GUtil	util/FuncPtr.h	/^  namespace GUtil{$/;"	n	namespace:GCommon
+GUtil	util/Time.h	/^  namespace GUtil{$/;"	n	namespace:GCommon
+GUtil	util/TypeTransform.h	/^  namespace GUtil{$/;"	n	namespace:GCommon
+HashKey	json/value.h	/^      typedef unsigned int HashKey;$/;"	t	class:Json::ValueInternalMap
+IOEpoll	net/socket/Socket.h	/^enum IOType{IOSelect,IOPoll,IOEpoll};$/;"	e	enum:GCommon::GNet::GSocket::IOType
+IOPoll	net/socket/Socket.h	/^enum IOType{IOSelect,IOPoll,IOEpoll};$/;"	e	enum:GCommon::GNet::GSocket::IOType
+IOSelect	net/socket/Socket.h	/^enum IOType{IOSelect,IOPoll,IOEpoll};$/;"	e	enum:GCommon::GNet::GSocket::IOType
+IOType	net/socket/Socket.h	/^enum IOType{IOSelect,IOPoll,IOEpoll};$/;"	g	namespace:GCommon::GNet::GSocket
+InArgs	json/value.h	/^      typedef std::vector<const PathArgument *> InArgs;$/;"	t	class:Json::Path
+Int	json/forwards.h	/^   typedef int Int;$/;"	t	namespace:Json
+Int	json/value.h	/^      typedef Json::Int Int;$/;"	t	class:Json::Value
+IntToStr	util/TypeTransform.cpp	/^std::string CTypeTransform::IntToStr(int value){$/;"	f	class:CTypeTransform
+InternalFlags	json/value.h	/^      enum InternalFlags { $/;"	g	class:Json::ValueInternalLink
+IteratorState	json/value.h	/^         IteratorState() $/;"	f	struct:Json::ValueInternalArray::IteratorState
+IteratorState	json/value.h	/^         IteratorState() $/;"	f	struct:Json::ValueInternalMap::IteratorState
+IteratorState	json/value.h	/^      struct IteratorState \/\/ Must be a POD$/;"	s	class:Json::ValueInternalArray
+IteratorState	json/value.h	/^      struct IteratorState$/;"	s	class:Json::ValueInternalMap
+JSON_API	json/config.h	34;"	d
+JSON_API	json/config.h	36;"	d
+JSON_API	json/config.h	38;"	d
+JSON_API	json/config.h	40;"	d
+JSON_AUTOLINK_H_INCLUDED	json/autolink.h	2;"	d
+JSON_CONFIG_H_INCLUDED	json/config.h	2;"	d
+JSON_FORWARDS_H_INCLUDED	json/forwards.h	2;"	d
+JSON_JSON_H_INCLUDED	json/json.h	2;"	d
+JSON_USE_CPPTL	json/config.h	29;"	d
+JSON_USE_EXCEPTION	json/config.h	24;"	d
+JSON_WRITER_H_INCLUDED	json/writer.h	2;"	d
+Json	json/features.h	/^namespace Json {$/;"	n
+Json	json/forwards.h	/^namespace Json {$/;"	n
+Json	json/reader.h	/^namespace Json {$/;"	n
+Json	json/value.h	/^namespace Json {$/;"	n
+Json	json/writer.h	/^namespace Json {$/;"	n
+Kind	json/value.h	/^      enum Kind$/;"	g	class:Json::PathArgument
+Listen	net/socket/SocketBase.cpp	/^int CSocketBase::Listen(int sockfd,int backlog){$/;"	f	class:CSocketBase
+Location	json/reader.h	/^      typedef const Char *Location;$/;"	t	class:Json::Reader
+Log	log/Log.cpp	/^void CLog::Log(std::string msg,std::string type){$/;"	f	class:CLog
+MAX_BUF_SIZE	net/socket/Socket.h	/^static const int MAX_BUF_SIZE=128;\/\/the socket read and write buf size$/;"	m	namespace:GCommon::GNet::GSocket
+MAX_USER_SIZE	net/socket/Socket.h	/^static const int MAX_USER_SIZE=99999;$/;"	m	namespace:GCommon::GNet::GSocket
+Members	json/value.h	/^      typedef std::vector<std::string> Members;$/;"	t	class:Json::Value
+Nodes	json/reader.h	/^      typedef std::stack<Value *> Nodes;$/;"	t	class:Json::Reader
 OBJ_POOL_H_	Pool/ObjPool.h	2;"	d
-OK	linuxLib/linComNet.h	/^const int OK=0;$/;"	v
-ObjPool	Pool/ObjPool.cpp	/^template <typename T> ObjPool<T>::ObjPool(int size)$/;"	f	class:ObjPool
+OK	net/socket/SocketBase.h	/^const int OK=0;$/;"	m	namespace:GCommon::GNet::GSocket
+ObjPool	Pool/ObjPool.h	/^		ObjPool(int size=defaultSize) throw(std::invalid_argument,std::bad_alloc){$/;"	f	class:ObjPool
 ObjPool	Pool/ObjPool.h	/^class ObjPool{$/;"	c
-Read	linuxLib/linComNet.h	/^ssize_t Read(int sockfd,void *buf,size_t len){$/;"	f
-Readn	linuxLib/linComNet.h	/^ssize_t Readn(int sockfd,void *vptr,size_t len){$/;"	f
-Select	linuxLib/linComNet.h	/^int Select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset,struct timeval *timeout){$/;"	f
-Socket	linuxLib/linComNet.h	/^int Socket(int family,int type,int protocol){$/;"	f
-StrToInt	linuxLib/Func.h	/^int StrToInt(string value){$/;"	f
-Write	linuxLib/linComNet.h	/^ssize_t Write(int sockfd,void *buf,size_t len){$/;"	f
-Writen	linuxLib/linComNet.h	/^ssize_t Writen(int sockfd,const void *vptr,size_t len){$/;"	f
-a	Pool/test.cpp	/^				int a=10;$/;"	m	class:A	file:
-allocateChunk	Pool/ObjPool.cpp	/^template <typename T> void ObjPool<T>::allocateChunk(){$/;"	f	class:ObjPool
+ObjectValues	json/value.h	/^      typedef CppTL::SmallMap<CZString, Value> ObjectValues;$/;"	t	class:Json::Value
+ObjectValues	json/value.h	/^      typedef std::map<CZString, Value> ObjectValues;$/;"	t	class:Json::Value
+PageIndex	json/value.h	/^      typedef unsigned int PageIndex;$/;"	t	class:Json::ValueInternalArray
+Path	json/value.h	/^   class Path$/;"	c	namespace:Json
+PathArgument	json/value.h	/^   class PathArgument$/;"	c	namespace:Json
+Poll	net/socket/SocketBase.cpp	/^int CSocketBase::Poll(struct pollfd* fdarray,unsigned long nfds,int timeout){$/;"	f	class:CSocketBase
+Read	net/socket/SocketBase.cpp	/^ssize_t CSocketBase::Read(int sockfd,void *buf,size_t len){$/;"	f	class:CSocketBase
+Reader	json/reader.h	/^   class JSON_API Reader$/;"	c	namespace:Json
+Readn	net/socket/SocketBase.cpp	/^ssize_t CSocketBase::Readn(int sockfd,void *vptr,size_t len){$/;"	f	class:CSocketBase
+Recv	net/socket/SocketBase.cpp	/^ssize_t CSocketBase::Recv(int sockfd,void *buf,size_t len,int flags){$/;"	f	class:CSocketBase
+Select	net/socket/SocketBase.cpp	/^int CSocketBase::Select(int maxfd,fd_set *readset,fd_set *writeset,fd_set *exceptset,struct timeval *timeout){$/;"	f	class:CSocketBase
+SelfType	json/value.h	/^      typedef ValueConstIterator SelfType;$/;"	t	class:Json::ValueConstIterator
+SelfType	json/value.h	/^      typedef ValueIterator SelfType;$/;"	t	class:Json::ValueIterator
+SelfType	json/value.h	/^      typedef ValueIteratorBase SelfType;$/;"	t	class:Json::ValueIteratorBase
+Socket	net/socket/SocketBase.cpp	/^int CSocketBase::Socket(int family,int type,int protocol){$/;"	f	class:CSocketBase
+StaticString	json/value.h	/^      explicit StaticString( const char *czstring )$/;"	f	class:Json::StaticString
+StaticString	json/value.h	/^   class JSON_API StaticString$/;"	c	namespace:Json
+StrToInt	util/TypeTransform.cpp	/^int CTypeTransform::StrToInt(std::string value){$/;"	f	class:CTypeTransform
+StyledStreamWriter	json/writer.h	/^   class JSON_API StyledStreamWriter$/;"	c	namespace:Json
+StyledWriter	json/writer.h	/^   class JSON_API StyledWriter: public Writer$/;"	c	namespace:Json
+ToStr	util/TypeTransform.h	27;"	d
+Token	json/reader.h	/^      class Token$/;"	c	class:Json::Reader
+TokenType	json/reader.h	/^      enum TokenType$/;"	g	class:Json::Reader
+UInt	json/forwards.h	/^   typedef unsigned int UInt;$/;"	t	namespace:Json
+UInt	json/value.h	/^      typedef Json::UInt UInt;$/;"	t	class:Json::Value
+Value	json/value.h	/^   class JSON_API Value $/;"	c	namespace:Json
+ValueAllocator	json/value.h	/^   class ValueAllocator$/;"	c	namespace:Json
+ValueArrayAllocator	json/value.h	/^   class JSON_API ValueArrayAllocator$/;"	c	namespace:Json
+ValueConstIterator	json/value.h	/^   class ValueConstIterator : public ValueIteratorBase$/;"	c	namespace:Json
+ValueHolder	json/value.h	/^      union ValueHolder$/;"	u	class:Json::Value
+ValueInternalArray	json/value.h	/^   class JSON_API ValueInternalArray$/;"	c	namespace:Json
+ValueInternalLink	json/value.h	/^   class JSON_API ValueInternalLink$/;"	c	namespace:Json
+ValueInternalMap	json/value.h	/^   class JSON_API ValueInternalMap$/;"	c	namespace:Json
+ValueIterator	json/value.h	/^   class ValueIterator : public ValueIteratorBase$/;"	c	namespace:Json
+ValueIteratorBase	json/value.h	/^   class ValueIteratorBase$/;"	c	namespace:Json
+ValueMapAllocator	json/value.h	/^   class JSON_API ValueMapAllocator$/;"	c	namespace:Json
+ValueType	json/value.h	/^   enum ValueType$/;"	g	namespace:Json
+Write	net/socket/SocketBase.cpp	/^ssize_t CSocketBase::Write(int sockfd,void *buf,size_t len){$/;"	f	class:CSocketBase
+Writen	net/socket/SocketBase.cpp	/^ssize_t Writen(int sockfd,const void *vptr,size_t len){$/;"	f
+Writer	json/writer.h	/^   class JSON_API Writer$/;"	c	namespace:Json
+_COMMON_LOG_LOG_H_	log/Log.h	2;"	d
+_COMMON_NET_SOCKET_SOCKET_BASE_H_	net/socket/SocketBase.h	2;"	d
+_COMMON_NET_SOCKET_SOCKET_H_	net/socket/Socket.h	2;"	d
+_COMMON_UTIL_FUNCPTR_H_	util/FuncPtr.h	2;"	d
+_COMMON_UTIL_GTIME_H_	util/Time.h	2;"	d
+_COMMON_UTIL_TYPETRANSFORM_H_	util/TypeTransform.h	2;"	d
+addChildValues_	json/writer.h	/^      bool addChildValues_;$/;"	m	class:Json::StyledStreamWriter
+addChildValues_	json/writer.h	/^      bool addChildValues_;$/;"	m	class:Json::StyledWriter
+allocateChunk	Pool/ObjPool.h	/^		void allocateChunk(){$/;"	f	class:ObjPool
+allowComments_	json/features.h	/^      bool allowComments_;$/;"	m	class:Json::Features
+allset	net/socket/Socket.h	/^    fd_set rset,allset;\/\/use for select mode$/;"	m	class:GCommon::GNet::GSocket::CSocket
+args_	json/value.h	/^      Args args_;$/;"	m	class:Json::Path
+arrayValue	json/value.h	/^      arrayValue,    \/\/\/< array value (ordered list)$/;"	e	enum:Json::ValueType
+array_	json/value.h	/^         ValueInternalArray *array_;$/;"	m	struct:Json::ValueInternalArray::IteratorState
+array_	json/value.h	/^         ValueInternalArray *array_;$/;"	m	union:Json::Value::ValueHolder
+array_	json/value.h	/^         ValueInternalArray::IteratorState array_;$/;"	m	union:Json::ValueIteratorBase::__anon4
+begin_	json/reader.h	/^      Location begin_;$/;"	m	class:Json::Reader
+bool_	json/value.h	/^         bool bool_;$/;"	m	union:Json::Value::ValueHolder
+booleanValue	json/value.h	/^      booleanValue,  \/\/\/< bool value$/;"	e	enum:Json::ValueType
+bucketIndex_	json/value.h	/^         BucketIndex bucketIndex_;$/;"	m	struct:Json::ValueInternalMap::IteratorState
+bucketsSize_	json/value.h	/^      BucketIndex bucketsSize_;$/;"	m	class:Json::ValueInternalMap
+buckets_	json/value.h	/^      ValueInternalLink *buckets_;$/;"	m	class:Json::ValueInternalMap
+buf	net/socket/Socket.h	/^    char buf[MAX_BUF_SIZE];$/;"	m	class:GCommon::GNet::GSocket::CSocket
+c_str	json/value.h	/^      const char *c_str() const$/;"	f	class:Json::StaticString
+childValues_	json/writer.h	/^      ChildValues childValues_;$/;"	m	class:Json::StyledStreamWriter
+childValues_	json/writer.h	/^      ChildValues childValues_;$/;"	m	class:Json::StyledWriter
+clientaddr	net/socket/Socket.h	/^    struct sockaddr_in clientaddr;$/;"	m	class:GCommon::GNet::GSocket::CSocket	typeref:struct:GCommon::GNet::GSocket::CSocket::sockaddr_in
+close	net/socket/Socket.cpp	/^void CSocket::close(int sockfd){$/;"	f	class:CSocket
+collectComments_	json/reader.h	/^      bool collectComments_;$/;"	m	class:Json::Reader
+commentAfter	json/value.h	/^      commentAfter,             \/\/\/< a comment on the line after a value (only make sense for root value)$/;"	e	enum:Json::CommentPlacement
+commentAfterOnSameLine	json/value.h	/^      commentAfterOnSameLine,   \/\/\/< a comment just after a value on the same line$/;"	e	enum:Json::CommentPlacement
+commentBefore	json/value.h	/^      commentBefore = 0,        \/\/\/< a comment placed on the line before a value$/;"	e	enum:Json::CommentPlacement
+comment_	json/value.h	/^         char *comment_;$/;"	m	struct:Json::Value::CommentInfo
+commentsBefore_	json/reader.h	/^      std::string commentsBefore_;$/;"	m	class:Json::Reader
+comments_	json/value.h	/^      CommentInfo *comments_;$/;"	m	class:Json::Value
+connfd	net/socket/Socket.h	/^    int connfd;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+const_iterator	json/value.h	/^      typedef ValueConstIterator const_iterator;$/;"	t	class:Json::Value
+counter	net/socket/Socket.h	/^    int counter;\/\/the sockfd counter$/;"	m	class:GCommon::GNet::GSocket::CSocket
+cstr_	json/value.h	/^         const char *cstr_;$/;"	m	class:Json::Value::CZString
+currentItemIndex_	json/value.h	/^         unsigned int currentItemIndex_;$/;"	m	struct:Json::ValueInternalArray::IteratorState
+currentPageIndex_	json/value.h	/^         Value **currentPageIndex_;$/;"	m	struct:Json::ValueInternalArray::IteratorState
+current_	json/reader.h	/^      Location current_;$/;"	m	class:Json::Reader
+current_	json/value.h	/^      Value::ObjectValues::iterator current_;$/;"	m	class:Json::ValueIteratorBase
 defaultSize	Pool/ObjPool.h	/^		static const int defaultSize=30;$/;"	m	class:ObjPool
+delayTime	util/Time.cpp	/^void CTime::delayTime(double sec){$/;"	f	class:CTime
+difference_type	json/value.h	/^      typedef int difference_type;$/;"	t	class:Json::ValueConstIterator
+difference_type	json/value.h	/^      typedef int difference_type;$/;"	t	class:Json::ValueIterator
+difference_type	json/value.h	/^      typedef int difference_type;$/;"	t	class:Json::ValueIteratorBase
+disconn	net/socket/test.cpp	/^void disconn(int sockfd){$/;"	f
+disconnects	net/socket/Socket.h	/^    voFuncInt *disconnects;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+document_	json/reader.h	/^      std::string document_;$/;"	m	class:Json::Reader
+document_	json/writer.h	/^      std::ostream* document_;$/;"	m	class:Json::StyledStreamWriter
+document_	json/writer.h	/^      std::string document_;$/;"	m	class:Json::FastWriter
+document_	json/writer.h	/^      std::string document_;$/;"	m	class:Json::StyledWriter
+duplicate	json/value.h	/^            duplicate,$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
+duplicateOnCopy	json/value.h	/^            duplicateOnCopy$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
+end_	json/reader.h	/^         Location end_;$/;"	m	class:Json::Reader::Token
+end_	json/reader.h	/^      Location end_;$/;"	m	class:Json::Reader
+epfd	net/socket/Socket.h	/^    int epfd;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+epollLoop	net/socket/Socket.cpp	/^void CSocket::epollLoop(){$/;"	f	class:CSocket
+errors_	json/reader.h	/^      Errors errors_;$/;"	m	class:Json::Reader
+ev	net/socket/Socket.h	/^    struct epoll_event ev;\/\/use for epoll mode$/;"	m	class:GCommon::GNet::GSocket::CSocket	typeref:struct:GCommon::GNet::GSocket::CSocket::epoll_event
+events	net/socket/Socket.h	/^    struct epoll_event *events;\/\/use for epoll mode $/;"	m	class:GCommon::GNet::GSocket::CSocket	typeref:struct:GCommon::GNet::GSocket::CSocket::epoll_event
+excepts	net/socket/Socket.h	/^    voFuncIntInt *excepts;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+extra_	json/reader.h	/^         Location extra_;$/;"	m	class:Json::Reader::ErrorInfo
+features_	json/reader.h	/^      Features features_;$/;"	m	class:Json::Reader
+fileClear	clear.sh	/^function fileClear(){$/;"	f
+flagAvailable	json/value.h	/^         flagAvailable = 0,$/;"	e	enum:Json::ValueInternalLink::InternalFlags
+flagUsed	json/value.h	/^         flagUsed = 1$/;"	e	enum:Json::ValueInternalLink::InternalFlags
 freeList	Pool/ObjPool.h	/^		queue<shared_ptr<T>> freeList;$/;"	m	class:ObjPool
-getObj	Pool/ObjPool.cpp	/^template<typename T> shared_ptr<T> ObjPool<T>::getObj(){$/;"	f	class:ObjPool
+getCounter	net/socket/Socket.cpp	/^int CSocket::getCounter(){$/;"	f	class:CSocket
+getObj	Pool/ObjPool.h	/^		shared_ptr<T> getObj(){$/;"	f	class:ObjPool
+getTimeNow	util/Time.cpp	/^std::string CTime::getTimeNow(){$/;"	f	class:CTime
+indentSize_	json/writer.h	/^      int indentSize_;$/;"	m	class:Json::StyledWriter
+indentString_	json/writer.h	/^      std::string indentString_;$/;"	m	class:Json::StyledStreamWriter
+indentString_	json/writer.h	/^      std::string indentString_;$/;"	m	class:Json::StyledWriter
+indentation_	json/writer.h	/^      std::string indentation_;$/;"	m	class:Json::StyledStreamWriter
+index_	json/value.h	/^         int index_;$/;"	m	class:Json::Value::CZString
+index_	json/value.h	/^      UInt index_;$/;"	m	class:Json::PathArgument
+init	net/socket/Socket.cpp	/^void CSocket::init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except){$/;"	f	class:CSocket
+intValue	json/value.h	/^      intValue,      \/\/\/< signed integer value$/;"	e	enum:Json::ValueType
+int_	json/value.h	/^         Int int_;$/;"	m	union:Json::Value::ValueHolder
+ioType	net/socket/Socket.h	/^    IOType ioType;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+isArray_	json/value.h	/^      bool isArray_;$/;"	m	class:Json::ValueIteratorBase
+isItemAvailable	json/value.h	/^      inline bool isItemAvailable() const$/;"	f	class:Json::Value
+isMemberNameStatic	json/value.h	/^      inline bool isMemberNameStatic() const$/;"	f	class:Json::Value
+isNull_	json/value.h	/^      bool isNull_;$/;"	m	class:Json::ValueIteratorBase
+itemCount_	json/value.h	/^      BucketIndex itemCount_;$/;"	m	class:Json::ValueInternalMap
+itemIndex_	json/value.h	/^         BucketIndex itemIndex_;$/;"	m	struct:Json::ValueInternalMap::IteratorState
+itemPerLink	json/value.h	/^      enum { itemPerLink = 6 };  \/\/ sizeof(ValueInternalLink) = 128 on 32 bits architecture.$/;"	e	enum:Json::ValueInternalLink::__anon2
+itemsPerPage	json/value.h	/^      enum { itemsPerPage = 8 };    \/\/ should be a power of 2 for fast divide and modulo.$/;"	e	enum:Json::ValueInternalArray::__anon3
+items_	json/value.h	/^      Value items_[itemPerLink];$/;"	m	class:Json::ValueInternalLink
+iterator	json/value.h	/^      typedef ValueIterator iterator;$/;"	t	class:Json::Value
+iterator_	json/value.h	/^      } iterator_;$/;"	m	class:Json::ValueIteratorBase	typeref:union:Json::ValueIteratorBase::__anon4
+key_	json/value.h	/^      std::string key_;$/;"	m	class:Json::PathArgument
+keys_	json/value.h	/^      char *keys_[itemPerLink];$/;"	m	class:Json::ValueInternalLink
+kindIndex	json/value.h	/^         kindIndex,$/;"	e	enum:Json::PathArgument::Kind
+kindKey	json/value.h	/^         kindKey$/;"	e	enum:Json::PathArgument::Kind
+kindNone	json/value.h	/^         kindNone = 0,$/;"	e	enum:Json::PathArgument::Kind
+kind_	json/value.h	/^      Kind kind_;$/;"	m	class:Json::PathArgument
+lastValueEnd_	json/reader.h	/^      Location lastValueEnd_;$/;"	m	class:Json::Reader
+lastValue_	json/reader.h	/^      Value *lastValue_;$/;"	m	class:Json::Reader
+link_	json/value.h	/^         ValueInternalLink *link_;$/;"	m	struct:Json::ValueInternalMap::IteratorState
+listenfd	net/socket/Socket.h	/^    int listenfd;$/;"	m	class:GCommon::GNet::GSocket::CSocket
 mSize	Pool/ObjPool.h	/^		int mSize;$/;"	m	class:ObjPool
-main	Pool/test.cpp	/^int main(int argc,char **argv){$/;"	f
-releaseObj	Pool/ObjPool.cpp	/^template<typename T> void ObjPool<T>::releaseObj(shared_ptr<T> obj){$/;"	f	class:ObjPool
+main	net/socket/test.cpp	/^int main(int argc,char **argv){$/;"	f
+map_	json/value.h	/^         ObjectValues *map_;$/;"	m	union:Json::Value::ValueHolder
+map_	json/value.h	/^         ValueInternalMap *map_;$/;"	m	struct:Json::ValueInternalMap::IteratorState
+map_	json/value.h	/^         ValueInternalMap *map_;$/;"	m	union:Json::Value::ValueHolder
+map_	json/value.h	/^         ValueInternalMap::IteratorState map_;$/;"	m	union:Json::ValueIteratorBase::__anon4
+maxIndex	net/socket/Socket.h	/^    int maxIndex;\/\/use for select and poll$/;"	m	class:GCommon::GNet::GSocket::CSocket
+maxInt	json/value.h	/^      static const Int maxInt;$/;"	m	class:Json::Value
+maxUInt	json/value.h	/^      static const UInt maxUInt;$/;"	m	class:Json::Value
+message_	json/reader.h	/^         std::string message_;$/;"	m	class:Json::Reader::ErrorInfo
+minInt	json/value.h	/^      static const Int minInt;$/;"	m	class:Json::Value
+newConn	net/socket/test.cpp	/^void newConn(int sockfd,std::string ip){$/;"	f
+newConnects	net/socket/Socket.h	/^    voFuncIntStr *newConnects;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+newData	net/socket/test.cpp	/^void newData(int sockfd,char *buf){$/;"	f
+newDatas	net/socket/Socket.h	/^    voFuncIntCharptr *newDatas;$/;"	m	class:GCommon::GNet::GSocket::CSocket
+next_	json/value.h	/^      ValueInternalLink *next_;$/;"	m	class:Json::ValueInternalLink
+noDuplication	json/value.h	/^            noDuplication = 0,$/;"	e	enum:Json::Value::CZString::DuplicationPolicy
+nodes_	json/reader.h	/^      Nodes nodes_;$/;"	m	class:Json::Reader
+null	json/value.h	/^      static const Value null;$/;"	m	class:Json::Value
+nullValue	json/value.h	/^      nullValue = 0, \/\/\/< 'null' value$/;"	e	enum:Json::ValueType
+numberOfCommentPlacement	json/value.h	/^      numberOfCommentPlacement$/;"	e	enum:Json::CommentPlacement
+objectValue	json/value.h	/^      objectValue    \/\/\/< object value (collection of name\/value pairs).$/;"	e	enum:Json::ValueType
+operator !=	json/value.h	/^      bool operator !=( const SelfType &other ) const$/;"	f	class:Json::ValueIteratorBase
+operator *	json/value.h	/^      reference operator *() const$/;"	f	class:Json::ValueConstIterator
+operator *	json/value.h	/^      reference operator *() const$/;"	f	class:Json::ValueIterator
+operator ++	json/value.h	/^      SelfType &operator++()$/;"	f	class:Json::ValueConstIterator
+operator ++	json/value.h	/^      SelfType &operator++()$/;"	f	class:Json::ValueIterator
+operator ++	json/value.h	/^      SelfType operator++( int )$/;"	f	class:Json::ValueConstIterator
+operator ++	json/value.h	/^      SelfType operator++( int )$/;"	f	class:Json::ValueIterator
+operator -	json/value.h	/^      difference_type operator -( const SelfType &other ) const$/;"	f	class:Json::ValueIteratorBase
+operator --	json/value.h	/^      SelfType &operator--()$/;"	f	class:Json::ValueConstIterator
+operator --	json/value.h	/^      SelfType &operator--()$/;"	f	class:Json::ValueIterator
+operator --	json/value.h	/^      SelfType operator--( int )$/;"	f	class:Json::ValueConstIterator
+operator --	json/value.h	/^      SelfType operator--( int )$/;"	f	class:Json::ValueIterator
+operator ==	json/value.h	/^      bool operator ==( const SelfType &other ) const$/;"	f	class:Json::ValueIteratorBase
+operator const char *	json/value.h	/^      operator const char *() const$/;"	f	class:Json::StaticString
+pageCount_	json/value.h	/^      PageIndex pageCount_;$/;"	m	class:Json::ValueInternalArray
+pages_	json/value.h	/^      Value **pages_;$/;"	m	class:Json::ValueInternalArray
+pclient	net/socket/Socket.h	/^    struct pollfd pclient[MAX_USER_SIZE];\/\/use for poll mode$/;"	m	class:GCommon::GNet::GSocket::CSocket	typeref:struct:GCommon::GNet::GSocket::CSocket::pollfd
+pointer	json/value.h	/^      typedef Value *pointer;$/;"	t	class:Json::ValueIterator
+pointer	json/value.h	/^      typedef const Value *pointer;$/;"	t	class:Json::ValueConstIterator
+pollLoop	net/socket/Socket.cpp	/^void CSocket::pollLoop(){$/;"	f	class:CSocket
+previous_	json/value.h	/^      ValueInternalLink *previous_;$/;"	m	class:Json::ValueInternalLink
+realValue	json/value.h	/^      realValue,     \/\/\/< double value$/;"	e	enum:Json::ValueType
+real_	json/value.h	/^         double real_;$/;"	m	union:Json::Value::ValueHolder
+reference	json/value.h	/^      typedef Value &reference;$/;"	t	class:Json::ValueIterator
+reference	json/value.h	/^      typedef const Value &reference;$/;"	t	class:Json::ValueConstIterator
+releaseObj	Pool/ObjPool.h	/^		void releaseObj(shared_ptr<T> obj){$/;"	f	class:ObjPool
 rhs	Pool/ObjPool.h	/^		ObjPool<T> &operator=(const ObjPool<T> &rhs)=delete;$/;"	m	class:ObjPool
+rightMargin_	json/writer.h	/^      int rightMargin_;$/;"	m	class:Json::StyledStreamWriter
+rightMargin_	json/writer.h	/^      int rightMargin_;$/;"	m	class:Json::StyledWriter
+rset	net/socket/Socket.h	/^    fd_set rset,allset;\/\/use for select mode$/;"	m	class:GCommon::GNet::GSocket::CSocket
+sclient	net/socket/Socket.h	/^    int sclient[FD_SETSIZE];\/\/use for select mode$/;"	m	class:GCommon::GNet::GSocket::CSocket
+selectLoop	net/socket/Socket.cpp	/^void CSocket::selectLoop(){$/;"	f	class:CSocket
+send	net/socket/Socket.cpp	/^void CSocket::send(int sockfd,const char* buf){$/;"	f	class:CSocket
+serveraddr	net/socket/Socket.h	/^    struct sockaddr_in serveraddr;$/;"	m	class:GCommon::GNet::GSocket::CSocket	typeref:struct:GCommon::GNet::GSocket::CSocket::sockaddr_in
+setItemUsed	json/value.h	/^      inline void setItemUsed( bool isUsed = true )$/;"	f	class:Json::Value
+setMemberNameIsStatic	json/value.h	/^      inline void setMemberNameIsStatic( bool isStatic )$/;"	f	class:Json::Value
+size_	json/value.h	/^      ArrayIndex size_;$/;"	m	class:Json::ValueInternalArray
+size_t	json/value.h	/^      typedef unsigned int size_t;$/;"	t	class:Json::ValueConstIterator
+size_t	json/value.h	/^      typedef unsigned int size_t;$/;"	t	class:Json::ValueIterator
+size_t	json/value.h	/^      typedef unsigned int size_t;$/;"	t	class:Json::ValueIteratorBase
+sockfdMap	net/socket/Socket.h	/^    std::map<int,int> sockfdMap;$/;"	m	class:GCommon::GNet::GSocket::CSocket
 src	Pool/ObjPool.h	/^		ObjPool(const ObjPool<T> &src)=delete;$/;"	m	class:ObjPool
+start_	json/reader.h	/^         Location start_;$/;"	m	class:Json::Reader::Token
+str_	json/value.h	/^      const char *str_;$/;"	m	class:Json::StaticString
+strictRoot_	json/features.h	/^      bool strictRoot_;$/;"	m	class:Json::Features
+stringValue	json/value.h	/^      stringValue,   \/\/\/< UTF-8 string value$/;"	e	enum:Json::ValueType
+string_	json/value.h	/^         char *string_;$/;"	m	union:Json::Value::ValueHolder
+tailLink_	json/value.h	/^      ValueInternalLink *tailLink_;$/;"	m	class:Json::ValueInternalMap
+tokenArrayBegin	json/reader.h	/^         tokenArrayBegin,$/;"	e	enum:Json::Reader::TokenType
+tokenArrayEnd	json/reader.h	/^         tokenArrayEnd,$/;"	e	enum:Json::Reader::TokenType
+tokenArraySeparator	json/reader.h	/^         tokenArraySeparator,$/;"	e	enum:Json::Reader::TokenType
+tokenComment	json/reader.h	/^         tokenComment,$/;"	e	enum:Json::Reader::TokenType
+tokenEndOfStream	json/reader.h	/^         tokenEndOfStream = 0,$/;"	e	enum:Json::Reader::TokenType
+tokenError	json/reader.h	/^         tokenError$/;"	e	enum:Json::Reader::TokenType
+tokenFalse	json/reader.h	/^         tokenFalse,$/;"	e	enum:Json::Reader::TokenType
+tokenMemberSeparator	json/reader.h	/^         tokenMemberSeparator,$/;"	e	enum:Json::Reader::TokenType
+tokenNull	json/reader.h	/^         tokenNull,$/;"	e	enum:Json::Reader::TokenType
+tokenNumber	json/reader.h	/^         tokenNumber,$/;"	e	enum:Json::Reader::TokenType
+tokenObjectBegin	json/reader.h	/^         tokenObjectBegin,$/;"	e	enum:Json::Reader::TokenType
+tokenObjectEnd	json/reader.h	/^         tokenObjectEnd,$/;"	e	enum:Json::Reader::TokenType
+tokenString	json/reader.h	/^         tokenString,$/;"	e	enum:Json::Reader::TokenType
+tokenTrue	json/reader.h	/^         tokenTrue,$/;"	e	enum:Json::Reader::TokenType
+token_	json/reader.h	/^         Token token_;$/;"	m	class:Json::Reader::ErrorInfo
+type_	json/reader.h	/^         TokenType type_;$/;"	m	class:Json::Reader::Token
+uintValue	json/value.h	/^      uintValue,     \/\/\/< unsigned integer value$/;"	e	enum:Json::ValueType
+uint_	json/value.h	/^         UInt uint_;$/;"	m	union:Json::Value::ValueHolder
+unknown	json/value.h	/^      enum { unknown = (unsigned)-1 };$/;"	e	enum:Json::ValueAllocator::__anon1
+value_	json/value.h	/^      } value_;$/;"	m	class:Json::Value	typeref:union:Json::Value::ValueHolder
+yamlCompatiblityEnabled_	json/writer.h	/^      bool yamlCompatiblityEnabled_;$/;"	m	class:Json::FastWriter
+~CSocket	net/socket/Socket.cpp	/^CSocket::~CSocket(){$/;"	f	class:CSocket
+~FastWriter	json/writer.h	/^      virtual ~FastWriter(){}$/;"	f	class:Json::FastWriter
+~StyledStreamWriter	json/writer.h	/^      ~StyledStreamWriter(){}$/;"	f	class:Json::StyledStreamWriter
+~StyledWriter	json/writer.h	/^      virtual ~StyledWriter(){}$/;"	f	class:Json::StyledWriter

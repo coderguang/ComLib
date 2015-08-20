@@ -18,7 +18,7 @@ CSocket::CSocket(IOType type,int family,int sockType,int protocol,int port,int b
 
   if(type==IOEpoll){
     int yes;
-    if(setsockopt(listenfd,SOL_SOCKET,SO_REUSEADDR,&yes,sizeof(int)==-1)){
+    if(setsockopt(listenfd,SOL_SOCKET,SO_REUSEADDR,&yes,sizeof(int))==-1){
       CLog::Log("setsockopt failed!","CSocket");
     }
   }
@@ -35,7 +35,7 @@ CSocket::CSocket(IOType type,int family,int sockType,int protocol,int port,int b
 
   CSocketBase::Listen(listenfd,backlog);
 
-  maxIndex=listenfd;//maxIndex use only for select and poll
+  maxfd=listenfd;//maxfd use only for select and poll
   
   counter=0;
 
@@ -84,8 +84,7 @@ void CSocket::selectLoop(){
      rset=allset;
      
      
-     int nready=CSocketBase::Select(maxIndex+1,&rset,NULL,NULL,NULL);
-     CLog::Log("nready="+ToStr(nready),"");
+     int nready=CSocketBase::Select(maxfd+1,&rset,NULL,NULL,NULL);//will test 0-maxfd ,every fd in this scope will be test
 
      if(FD_ISSET(listenfd,&rset)){//when a new connections come,add it to set and sclient array and sockMap;
        socklen_t clilen=sizeof(clientaddr);
@@ -95,13 +94,13 @@ void CSocket::selectLoop(){
        
        CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,"CSocket");
 
-       int index=1;
-       for(index=1;index<FD_SETSIZE;index++){
+       int index=0;
+       for(index=0;index<FD_SETSIZE;index++){
          if(sclient[index]<0){
            //add sockfd to sclient[]
            sclient[index]=connfd;
            //add sockfd to allset
-           //FD_SET(connfd,&allset); 
+           FD_SET(connfd,&allset); 
 
            //add sockfd to map ,because clang++ can't complie it,hide it 
            //sockfdMap[connfd]=connfd;
@@ -111,34 +110,29 @@ void CSocket::selectLoop(){
          }
        }
        
-       FD_SET(connfd,&allset); 
        if(FD_SETSIZE==index){
          CLog::Log("too much sock connect,array is full!,index="+ToStr(index),"CSocket");
        }
-       if(index>maxIndex){//maxIndex in sclient[]
-         maxIndex=index;
+       if(connfd>maxfd){//maxfd in sclient[],be care maxfd did't eq max index in sclient
+         maxfd=connfd;
        }
-/*
+
        if(--nready<=0){ //if no more data ready,don't continue to left code
          continue; 
        }
- */    
+     
      }
 
     //if not a new connection but a already socket data come
     int sockfd;
-    //for(int i=1;i<=maxIndex;i++){
-    for(int i=1;i<FD_SETSIZE;i++){
-      if((sockfd=sclient[i])<=0){
+    for(int i=0;i<maxfd+1;i++){
+      if((sockfd=sclient[i])<0){
         continue;
       }
-      CLog::Log("socket="+ToStr(sockfd)+" >0","");//test
-
       if(FD_ISSET(sockfd,&rset)){
-       CLog::Log("come read,socket="+ToStr(sockfd),"CSocket");//test
-        memset(buf,sizeof(buf),'\0');
+        memset(buf,'\0',sizeof(buf));
         int nread;
-        if((nread=CSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))==0){
+        if((nread=CSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))<0){
           CLog::Log("socket close by client or socket occur error","CSocket");
           CSocketBase::Close(sockfd);
           sclient[i]=-1;
@@ -147,19 +141,19 @@ void CSocket::selectLoop(){
           FD_CLR(sockfd,&allset);
           //callback
           (*disconnects)(sockfd);
-          (*excepts)(sockfd,errno);      
-
-/*        }else if(0==nread){
+          if(0!=errno){
+            (*excepts)(sockfd,errno);      
+          }
+        }else if(0==nread){
           CLog::Log("read==0","CSocket");
-          continue;*/
-        }else{//get the data
-          CLog::Log("read==0","CSocket");
+          continue;
+        }else{//get new data
           (*newDatas)(sockfd,buf);
         }
-      }else{
-          CLog::Log("read no in rset");
+        if(--nready<=0){
+          break;
+        }
       }
-
     }
  
    }
@@ -176,7 +170,7 @@ int CSocket::getCounter(){
 
 void CSocket::close(int sockfd){
   if(ioType==IOSelect){
-    for(int i=1;i<maxIndex;i++){
+    for(int i=1;i<maxfd;i++){
       if(sclient[i]==sockfd){
         sclient[i]=-1;
         FD_CLR(sockfd,&allset);
@@ -184,7 +178,7 @@ void CSocket::close(int sockfd){
       }
     }
    }else if(ioType==IOPoll){
-     for(int i=1;i<maxIndex;i++){
+     for(int i=1;i<maxfd;i++){
        if(pclient[i].fd==sockfd){
          pclient[i].fd=-1;
          counter--;
@@ -202,10 +196,11 @@ void CSocket::pollLoop(){
   pclient[0].fd=listenfd;
   pclient[0].events=POLLRDNORM;
 
-  for(int i=0;i<MAX_BUF_SIZE;i++){
+  maxIndex=0;
+
+  for(int i=1;i<MAX_USER_SIZE;i++){
     pclient[i].fd=-1;
   }
-  maxIndex=listenfd+1;
 
   //come to poll loop
   for(;;){
@@ -223,7 +218,8 @@ void CSocket::pollLoop(){
       for(index=1;index<MAX_USER_SIZE;index++){
         if(pclient[index].fd<0){
           pclient[index].fd=connfd;
-          pclient[index].events=ev.events;
+          //pclient[index].events=ev.events;
+          pclient[index].events=POLLRDNORM;
           counter++;
           (*newConnects)(connfd,ip);
           break;
@@ -232,7 +228,7 @@ void CSocket::pollLoop(){
       if(MAX_USER_SIZE==index){
          CLog::Log("too much sock connect,array is full!,index="+ToStr(index),"CSocket");
        }
-       if(index>maxIndex){//maxIndex in sclient[]
+       if(index>maxIndex){//max index in pclient[]
          maxIndex=index;
        }
        if(--nready<=0){ //if no more data ready,don't continue to left code
@@ -242,11 +238,12 @@ void CSocket::pollLoop(){
     }
 
     int sockfd;
-    for(int i=1;i<maxIndex;i++){
+    for(int i=1;i<maxIndex+1;i++){
       if((sockfd=pclient[i].fd)<0){
         continue;
       }
-      if(pclient[i].revents&ev.events){
+      //if(pclient[i].revents&ev.events){
+      if(pclient[i].revents&POLLRDNORM){
         memset(buf,sizeof(buf),'\0');
         int nread;
         if((nread=CSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))<0){
@@ -256,16 +253,17 @@ void CSocket::pollLoop(){
           //sockfdMap[sockfd]=-1;
           counter--;
           (*disconnects)(sockfd);
-          (*excepts)(sockfd,errno);      
+          if(0!=errno){
+            (*excepts)(sockfd,errno);      
+          }
         }else if(0==nread){
           continue;
         }else{//get the data
           (*newDatas)(sockfd,buf);
         }
-    
-      }
-      if(--nready<=0){//no more ready
-        break;
+        if(--nready<=0){//no more ready
+          break;
+        }
       }
     }
   }
@@ -278,6 +276,7 @@ void CSocket::epollLoop(){
 
   epfd=CSocketBase::Epoll_create(MAX_USER_SIZE);
   
+  ev.events=POLLIN;//now ,only listen POLLIN 
   ev.data.fd=listenfd;
 
   CSocketBase::Epoll_ctl(epfd,EPOLL_CTL_ADD,listenfd,&ev); 
@@ -305,10 +304,13 @@ void CSocket::epollLoop(){
         CLog::Log("socket close by client or socket occur error","CSocket");
         CSocketBase::Epoll_ctl(epfd,EPOLL_CTL_DEL,sockfd,&ev);
         (*disconnects)(sockfd);
-        (*excepts)(sockfd,errno);
+        if(0!=errno){
+          (*excepts)(sockfd,errno);
+        }
         CSocketBase::Close(sockfd);
         continue;
      }else if(events[index].events&EPOLLIN){
+       memset(buf,'\0',sizeof(buf));
        CSocketBase::Recv(sockfd,buf,sizeof(buf),0);
        (*newDatas)(sockfd,buf);   
      }
