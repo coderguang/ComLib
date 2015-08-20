@@ -1,4 +1,0 @@
-rm *.gch *.o *~
-g++ -o SocketBase.o -Wall -c -g SocketBase.cpp ../../lib/liblog.a ../../lib/libutil.a  -std=c++11
-
-g++ -o Socket.o -Wall -c -g Socket.cpp ../../lib/liblog.a ../../lib/libutil.a -std=c++11
