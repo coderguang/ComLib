@@ -1,1 +1,2 @@
-clang++ -g -Wall *.cpp -o test -std=c++11 ../../lib/liblog.a ../../lib/libutil.a libsock.a
+rm *.o *.gch *~
+clang++ -g -Wall *.cpp -o test -std=c++11 ../../lib/liblog.a ../../lib/libutil.a 
