@@ -181,7 +181,7 @@ ssize_t CSocketBase::Readn(int sockfd,void *vptr,size_t len){
 }
 
 
-ssize_t Writen(int sockfd,const void *vptr,size_t len){
+ssize_t CSocketBase::Writen(int sockfd,const void *vptr,size_t len){
   size_t nleft;
   ssize_t nwritten;
   const char *ptr;
@@ -202,6 +202,26 @@ ssize_t Writen(int sockfd,const void *vptr,size_t len){
   return len;
 }
 
+ssize_t CSocketBase::Writen(int sockfd,const char* vptr,size_t len){
+  size_t nleft;
+  ssize_t nwritten;
+  const char *ptr;
+  
+  ptr=vptr;
+  nleft=len;
+
+  while(nleft>0){
+    if((nwritten=write(sockfd,ptr,nleft))<0){
+      nwritten=0;
+    }else{
+      CLog::Log("writen sockfd error","CSocketBase");
+      return ERROR;
+    }
+    nleft=nleft-nwritten;
+    ptr+=nwritten;
+  }
+  return len;
+}
 
 ssize_t CSocketBase::Recv(int sockfd,void *buf,size_t len,int flags){
   int temp=recv(sockfd,buf,len,flags);

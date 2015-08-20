@@ -160,8 +160,7 @@ void CSocket::selectLoop(){
 }
 
 void CSocket::send(int sockfd,const char* buf){
-  //const void* buffer=(void*)buf;
-  //CSocketBase::Writen(sockfd,buffer,(unsigned long)strlen(buf));
+  CSocketBase::Writen(sockfd,buf,strlen(buf));
 }
 
 int CSocket::getCounter(){
