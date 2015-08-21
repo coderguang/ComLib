@@ -188,14 +188,16 @@ ssize_t CSocketBase::Writen(int sockfd,const void *vptr,size_t len){
   
   ptr=(char*)vptr;
   nleft=len;
-
   while(nleft>0){
-    if((nwritten=write(sockfd,ptr,nleft))<0){
-      nwritten=0;
-    }else{
-      CLog::Log("writen sockfd error","CSocketBase");
-      return ERROR;
+    if((nwritten=write(sockfd,ptr,nleft))<=0){
+      if(nwritten<0&&errno==EINTR){
+         nwritten=0;
+      }else{
+        CLog::Log("writen sockfd error","CSocketBase");
+        return ERROR;
+      }
     }
+
     nleft=nleft-nwritten;
     ptr+=nwritten;
   }
@@ -211,11 +213,13 @@ ssize_t CSocketBase::Writen(int sockfd,const char* vptr,size_t len){
   nleft=len;
 
   while(nleft>0){
-    if((nwritten=write(sockfd,ptr,nleft))<0){
-      nwritten=0;
-    }else{
-      CLog::Log("writen sockfd error","CSocketBase");
-      return ERROR;
+    if((nwritten=write(sockfd,ptr,nleft))<=0){
+      if(nwritten<0&&errno==EINTR){
+         nwritten=0;
+      }else{
+        CLog::Log("writen sockfd error","CSocketBase");
+        return ERROR;
+      }
     }
     nleft=nleft-nwritten;
     ptr+=nwritten;

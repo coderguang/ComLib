@@ -1,0 +1,2 @@
+rm *.o *.gch *~
+clang++ -g -Wall test.cpp ../../net/socket/*.cpp -o test -std=c++11 ../../lib/liblog.a ../../lib/libutil.a 
