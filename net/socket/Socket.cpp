@@ -44,6 +44,9 @@ CSocket::CSocket(IOType type,int family,int sockType,int protocol,int port,int b
 }
 
 CSocket::~CSocket(){
+  if(IOEpoll==ioType){
+    CSocketBase::Close(epfd);
+  }
 }
 
 void CSocket::init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt *disconnect,voFuncIntInt *except){

@@ -77,8 +77,8 @@ int CSocketBase::Poll(struct pollfd* fdarray,unsigned long nfds,int timeout){
   return ERROR;
 }
 
-int CSocketBase::Epoll_create(int maxfd){
-  int temp=epoll_create(maxfd);
+int CSocketBase::Epoll_create(int size){
+  int temp=epoll_create(size);
   if(temp>0){
     return temp;
   }else if(ERROR==temp){
