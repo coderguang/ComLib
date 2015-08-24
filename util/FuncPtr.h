@@ -11,6 +11,7 @@ using voFuncInt=void (*)(int);
 using voFuncIntCharptr=void (*)(int,char*);
 using voFuncIntInt=void (*)(int,int);
 using voFuncIntStr=void (*)(int,std::string);
+using voFuncStr=void (*)(std::string);
 
   }
 }
