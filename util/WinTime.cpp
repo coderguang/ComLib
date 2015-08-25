@@ -1,6 +1,6 @@
 #include "stdafx.h"
+#include <time.h>
 #include "../include/util/Time.h"
-
 /*
  *this version is use for util.dll
  */
