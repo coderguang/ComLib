@@ -4,7 +4,7 @@
 #include <WinSock2.h>
 #include <string>
 
-#include "util\FuncPtr.h"
+#include "../util/FuncPtr.h"
 
 using namespace GCommon::GUtil;
 

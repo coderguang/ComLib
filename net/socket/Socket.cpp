@@ -1,8 +1,9 @@
 #include <string>
 #include <stdlib.h>
-#include "Socket.h"
-#include "../../log/Log.h"
-#include "../../util/TypeTransform.h"
+
+#include "../../include/net/Socket.h"
+#include "../../include/log/Log.h"
+#include "../../include/util/TypeTransform.h"
 
 using namespace GCommon::GNet::GSocket;
 using namespace GCommon::GLog;

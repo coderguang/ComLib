@@ -4,7 +4,7 @@
 #include <map>
 #include <string.h>
 #include "SocketBase.h"
-#include "../../util/FuncPtr.h"
+#include "../util/FuncPtr.h"
 
 namespace GCommon{
   namespace GNet{
