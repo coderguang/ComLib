@@ -1,10 +1,10 @@
 #ifndef _COMMON_NET_SOCKET_SOCKET_H_
 #define _COMMON_NET_SOCKET_SOCKET_H_
 
-#include "SocketBase.h"
-#include "../../util/FuncPtr.h"
 #include <map>
 #include <string.h>
+#include "SocketBase.h"
+#include "../../util/FuncPtr.h"
 
 namespace GCommon{
   namespace GNet{
