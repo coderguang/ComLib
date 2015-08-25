@@ -1,6 +1,7 @@
 
 #include "WinSocket.h"
 #include "log\Log.h"
+#include "util\TypeTransform.h"
 
 using namespace GCommon::GNet::GSocket;
 using namespace GCommon::GUtil;
@@ -40,14 +41,17 @@ void CWinSocket::initSocket(char* host, int port, int family, int protocol, int 
 	servaddr.sin_addr.S_un.S_addr = inet_addr(host);
 
 	if (SOCKET_ERROR == connect(clientfd, (struct sockaddr *)&servaddr, sizeof(servaddr))){
-		CLog::Log("winsocket connect failed", getClassName());		
+		CLog::Log("winsocket connect failed! fd=" + ToStr(clientfd), getClassName());
+	}
+	else{
+		CLog::Log("winsocket connect success! fd="+ToStr(clientfd), getClassName());
 	}
 
 }
 
 void CWinSocket::sendMsg(std::string msg){
 	if (send(clientfd, msg.c_str(), sizeof(msg) + 1, 0) <= 0){
-		CLog::Log("winsocket send error:msg=" + msg, getClassName());
+		CLog::Log("winsocket send error! fd="+ToStr(clientfd)+" msg="+ msg, getClassName());
 	}
 }
 
