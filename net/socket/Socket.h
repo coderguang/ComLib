@@ -40,6 +40,10 @@ class CSocket{
  
     void epollLoop();
 
+    std::string getClassName(){
+      return "CSocket";
+    }
+
   private:
     CSocket(CSocket&)=delete;
     CSocket operator=(CSocket&)=delete;
