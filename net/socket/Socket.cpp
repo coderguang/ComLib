@@ -98,7 +98,7 @@ void CSocket::selectLoop(){
        CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,getClassName());
 
        int index=0;
-       for(index=0;index<FD_SETSIZE;index++){
+       for(index=0;connfd!=-1&&index<FD_SETSIZE;index++){
          if(sclient[index]<0){
            //add sockfd to sclient[]
            sclient[index]=connfd;
@@ -217,7 +217,7 @@ void CSocket::pollLoop(){
       CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,getClassName());
        
       int index=1;
-      for(index=1;index<MAX_USER_SIZE;index++){
+      for(index=1;connfd!=-1&&index<MAX_USER_SIZE;index++){
         if(pclient[index].fd<0){
           pclient[index].fd=connfd;
           //pclient[index].events=ev.events;
@@ -287,7 +287,7 @@ void CSocket::epollLoop(){
     int nready=CSocketBase::Epoll_wait(epfd,events,MAX_USER_SIZE,-1);
 
     int sockfd;
-    for(int index=0;index<nready;index++){
+    for(int index=0;connfd!=-1&&index<nready;index++){
       sockfd=events[index].data.fd;
       if(sockfd==listenfd){//new connections
         socklen_t clilen=sizeof(clientaddr);
