@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Log.h"
 using namespace GCommon::GLog;
 
