@@ -27,9 +27,9 @@ void excep(int sockfd,int err){
 int main(int argc,char **argv){
   struct epoll_event ev;
   ev.events=POLLIN;
-  CSocket msock(IOSelect,AF_INET,SOCK_STREAM,0,9000,10,ev); //test ok
+  //CSocket msock(IOSelect,AF_INET,SOCK_STREAM,0,9000,10,ev); //test ok
   //CSocket msock(IOPoll,AF_INET,SOCK_STREAM,0,9000,10,ev); //test ok
-  //CSocket msock(IOEpoll,AF_INET,SOCK_STREAM,0,9000,10,ev);
+  CSocket msock(IOEpoll,AF_INET,SOCK_STREAM,0,9000,10,ev);
   voFuncIntStr f1=newConn;
   voFuncIntCharptr f2=newData;
   voFuncInt f3=disconn;
