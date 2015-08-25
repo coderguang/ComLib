@@ -1,2 +1,0 @@
-clang++ -Wall -g -c *.cpp -std=c++11
-ar -crv ../../lib/libsock.a *.o
