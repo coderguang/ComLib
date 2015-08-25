@@ -24,18 +24,18 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\log\Log.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="winsockdll.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\log\Log.cpp">
+    <ClCompile Include="..\..\..\net\winsocket\WinSocket.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

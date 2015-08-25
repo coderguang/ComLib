@@ -1,5 +1,5 @@
 f:
-cd "winlibs\Debug"
-copy /y *.lib ..\..\
+cd "winlibs\x64\Debug"
+copy /y *.lib ..\..\..\
 
 pause
