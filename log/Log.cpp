@@ -1,5 +1,8 @@
-#include "stdafx.h"
-#include "Log.h"
+#ifdef _WINDOWS_
+  #include "stdafx.h"
+#endif
+
+#include "../include/log/Log.h"
 using namespace GCommon::GLog;
 
 void CLog::Log(std::string msg,std::string type){

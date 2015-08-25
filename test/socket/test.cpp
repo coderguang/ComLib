@@ -1,4 +1,5 @@
-#include "../../net/socket/Socket.h"
+#include "../../include/net/Socket.h"
+#include "../../include/net/SocketBase.h"
 #include <string>
 #include <iostream>
 
@@ -29,13 +30,15 @@ int main(int argc,char **argv){
   ev.events=POLLIN;
   //CSocket msock(IOSelect,AF_INET,SOCK_STREAM,0,9000,10,ev); //test ok
   //CSocket msock(IOPoll,AF_INET,SOCK_STREAM,0,9000,10,ev); //test ok
-  CSocket msock(IOEpoll,AF_INET,SOCK_STREAM,0,9000,10,ev);
+
+  //CSocket msock(IOEpoll,AF_INET,SOCK_STREAM,0,9000,10,ev);
+  CSocket *msock=new CSocket(IOEpoll,AF_INET,SOCK_STREAM,0,9000,10,ev);
   voFuncIntStr f1=newConn;
   voFuncIntCharptr f2=newData;
   voFuncInt f3=disconn;
   voFuncIntInt f4=excep;
 
-  msock.init(&f1,&f2,&f3,&f4);
+  msock->init(&f1,&f2,&f3,&f4);
 
 
 }
