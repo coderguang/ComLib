@@ -10,7 +10,7 @@ using namespace GCommon::GLog;
 int CSocketBase::Socket(int family,int type,int protocol){
   int temp=socket(family,type,protocol);
   if(ERROR==temp){
-    CLog::Log("socket init failed when call socket","GSockBase");
+    CLog::Log("socket init failed when call socket",getClassName());
     return ERROR;
   }
   return temp;
@@ -19,7 +19,7 @@ int CSocketBase::Socket(int family,int type,int protocol){
 int CSocketBase::Connect(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){
   int temp=connect(sockfd,servaddr,addrlen);
   if(ERROR==temp){
-    CLog::Log("socket init failed when call connect","GSockBase");
+    CLog::Log("socket init failed when call connect",getClassName());
     return ERROR;
   }
   return temp;
@@ -28,7 +28,7 @@ int CSocketBase::Connect(int sockfd,const struct sockaddr *servaddr,socklen_t ad
 int CSocketBase::Bind(int sockfd,const struct sockaddr *servaddr,socklen_t addrlen){
   int temp=bind(sockfd,servaddr,addrlen);
   if(ERROR==temp){
-    CLog::Log("socket init failed when call bind","GSockBase");
+    CLog::Log("socket init failed when call bind",getClassName());
     return ERROR;
   }
   return temp;
@@ -37,7 +37,7 @@ int CSocketBase::Bind(int sockfd,const struct sockaddr *servaddr,socklen_t addrl
 int CSocketBase::Listen(int sockfd,int backlog){
   int temp=listen(sockfd,backlog);
   if(ERROR==temp){
-    CLog::Log("socket init failed when call listen","GSockBase");
+    CLog::Log("socket init failed when call listen",getClassName());
     return ERROR;
   }
   return temp;
@@ -47,7 +47,7 @@ int CSocketBase::Listen(int sockfd,int backlog){
 int CSocketBase::Accept(int sockfd,struct sockaddr *cliaddr,socklen_t *addrlen){
   int temp=accept(sockfd,cliaddr,addrlen);
   if(ERROR==temp){
-    CLog::Log("socket init failed when call accept","GSockBase");
+    CLog::Log("socket init failed when call accept",getClassName());
     return ERROR;
   }
   return temp;
@@ -58,10 +58,10 @@ int CSocketBase::Select(int maxfd,fd_set *readset,fd_set *writeset,fd_set *excep
   if(temp>0||0==temp){
     return temp;
   }else if(ERROR==temp){
-    CLog::Log("select occur error!","CSocketBase");
+    CLog::Log("select occur error!",getClassName());
     return ERROR;
   }
-  CLog::Log("select occur unexcepted error!","CSocketBase");
+  CLog::Log("select occur unexcepted error!",getClassName());
   return ERROR;
 }
 
@@ -70,10 +70,10 @@ int CSocketBase::Poll(struct pollfd* fdarray,unsigned long nfds,int timeout){
   if(temp>0||temp==0){
     return temp;
   }else if(ERROR==temp){
-    CLog::Log("poll occur error","CSocketBase");
+    CLog::Log("poll occur error",getClassName());
     return ERROR;
   }
-  CLog::Log("poll occur unexcepted error!","CSocketBase");
+  CLog::Log("poll occur unexcepted error!",getClassName());
   return ERROR;
 }
 
@@ -82,10 +82,10 @@ int CSocketBase::Epoll_create(int size){
   if(temp>0){
     return temp;
   }else if(ERROR==temp){
-    CLog::Log("epoll_create occur error","CSocketBase");
+    CLog::Log("epoll_create occur error",getClassName());
     return ERROR;
   }
-  CLog::Log("epoll_create occur unexcepted error!","CSocketBase");
+  CLog::Log("epoll_create occur unexcepted error!",getClassName());
   return ERROR;
 }
 
@@ -94,10 +94,10 @@ int CSocketBase::Epoll_ctl(int epfd,int op,int fd,struct epoll_event *event){
   if(0==temp){
     return OK;
   }else if(ERROR==temp){
-    CLog::Log("epoll_ctl occur error","CSocketBase");
+    CLog::Log("epoll_ctl occur error",getClassName());
     return ERROR;
   }
-  CLog::Log("epoll_ctl occur unexcepted error!","CSocketBase");
+  CLog::Log("epoll_ctl occur unexcepted error!",getClassName());
   return ERROR;
 }
 
@@ -106,10 +106,10 @@ int CSocketBase::Epoll_wait(int epfd,struct epoll_event *events,int maxfd,int ti
   if(temp>0||0==temp){
     return temp;
   }else if(ERROR==temp){
-    CLog::Log("epoll_wait occur error","CSocketBase");
+    CLog::Log("epoll_wait occur error",getClassName());
     return ERROR;
   }
-  CLog::Log("epoll_wait occur unexcepted error!","CSocketBase");
+  CLog::Log("epoll_wait occur unexcepted error!",getClassName());
   return ERROR;
 }
 
@@ -118,7 +118,7 @@ int CSocketBase::Close(int sockfd){
   if(OK==temp){
     return temp;
   }else{
-    CLog::Log("socket close occur error","CSocketBase");
+    CLog::Log("socket close occur error",getClassName());
     return ERROR;
   }
 }
@@ -130,7 +130,7 @@ ssize_t CSocketBase::Read(int sockfd,void *buf,size_t len){
       temp=0;
       return OK;
     }else{
-      CLog::Log("read socket error!","CSocketBase");
+      CLog::Log("read socket error!",getClassName());
       return ERROR;
     }
   }else{
@@ -145,7 +145,7 @@ ssize_t CSocketBase::Write(int sockfd,void *buf,size_t len){
       temp=0;
       return OK;
     }else{
-      CLog::Log("write socket error","CSocketBase");
+      CLog::Log("write socket error",getClassName());
       return ERROR;
     }
   }else{
@@ -167,7 +167,7 @@ ssize_t CSocketBase::Readn(int sockfd,void *vptr,size_t len){
       if(errno==EINTR){
         nread=0; //should call read again
       }else{
-        CLog::Log("readn sockfd error","CSocketBase");
+        CLog::Log("readn sockfd error",getClassName());
         return ERROR;
       }
     }else if(nread==0){
@@ -193,7 +193,7 @@ ssize_t CSocketBase::Writen(int sockfd,const void *vptr,size_t len){
       if(nwritten<0&&errno==EINTR){
          nwritten=0;
       }else{
-        CLog::Log("writen sockfd error","CSocketBase");
+        CLog::Log("writen sockfd error",getClassName());
         return ERROR;
       }
     }
@@ -217,7 +217,7 @@ ssize_t CSocketBase::Writen(int sockfd,const char* vptr,size_t len){
       if(nwritten<0&&errno==EINTR){
          nwritten=0;
       }else{
-        CLog::Log("writen sockfd error","CSocketBase");
+        CLog::Log("writen sockfd error",getClassName());
         return ERROR;
       }
     }
@@ -234,7 +234,7 @@ ssize_t CSocketBase::Recv(int sockfd,void *buf,size_t len,int flags){
       temp=0;
       return OK;
     }else{
-      CLog::Log("recv socket error!","CSocketBase");
+      CLog::Log("recv socket error!",getClassName());
       return ERROR;
     }
   }else{

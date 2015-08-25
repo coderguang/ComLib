@@ -19,7 +19,7 @@ CSocket::CSocket(IOType type,int family,int sockType,int protocol,int port,int b
   if(type==IOEpoll){
     int yes;
     if(setsockopt(listenfd,SOL_SOCKET,SO_REUSEADDR,&yes,sizeof(int))==-1){
-      CLog::Log("setsockopt failed!","CSocket");
+      CLog::Log("setsockopt failed!",getClassName());
     }
   }
    
@@ -65,7 +65,7 @@ void CSocket::init(voFuncIntStr *newConnect,voFuncIntCharptr *newData,voFuncInt 
         epollLoop();
         break;
    default:
-        CLog::Log("invaild ioType input!","CSocket");
+        CLog::Log("invaild ioType input!",getClassName());
   }
 
 }
@@ -95,10 +95,10 @@ void CSocket::selectLoop(){
 
        std::string ip=inet_ntoa(clientaddr.sin_addr);
        
-       CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,"CSocket");
+       CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,getClassName());
 
        int index=0;
-       for(index=0;index<FD_SETSIZE;index++){
+       for(index=0;connfd!=-1&&index<FD_SETSIZE;index++){
          if(sclient[index]<0){
            //add sockfd to sclient[]
            sclient[index]=connfd;
@@ -114,7 +114,7 @@ void CSocket::selectLoop(){
        }
        
        if(FD_SETSIZE==index){
-         CLog::Log("too much sock connect,array is full!,index="+ToStr(index),"CSocket");
+         CLog::Log("too much sock connect,array is full!,index="+ToStr(index),getClassName());
        }
        if(connfd>maxfd){//maxfd in sclient[],be care maxfd did't eq max index in sclient
          maxfd=connfd;
@@ -136,7 +136,7 @@ void CSocket::selectLoop(){
         memset(buf,'\0',sizeof(buf));
         int nread;
         if((nread=CSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))<0){
-          CLog::Log("socket close by client or socket occur error","CSocket");
+          CLog::Log("socket close by client or socket occur error",getClassName());
           CSocketBase::Close(sockfd);
           sclient[i]=-1;
           //sockfdMap[sockfd]=-1;
@@ -148,7 +148,7 @@ void CSocket::selectLoop(){
             (*excepts)(sockfd,errno);      
           }
         }else if(0==nread){
-          CLog::Log("read==0","CSocket");
+          CLog::Log("read==0",getClassName());
           continue;
         }else{//get new data
           (*newDatas)(sockfd,buf);
@@ -214,10 +214,10 @@ void CSocket::pollLoop(){
 
       std::string ip=inet_ntoa(clientaddr.sin_addr);
        
-      CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,"CSocket");
+      CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,getClassName());
        
       int index=1;
-      for(index=1;index<MAX_USER_SIZE;index++){
+      for(index=1;connfd!=-1&&index<MAX_USER_SIZE;index++){
         if(pclient[index].fd<0){
           pclient[index].fd=connfd;
           //pclient[index].events=ev.events;
@@ -228,7 +228,7 @@ void CSocket::pollLoop(){
         }
       }
       if(MAX_USER_SIZE==index){
-         CLog::Log("too much sock connect,array is full!,index="+ToStr(index),"CSocket");
+         CLog::Log("too much sock connect,array is full!,index="+ToStr(index),getClassName());
        }
        if(index>maxIndex){//max index in pclient[]
          maxIndex=index;
@@ -249,7 +249,7 @@ void CSocket::pollLoop(){
         memset(buf,sizeof(buf),'\0');
         int nread;
         if((nread=CSocketBase::Read(sockfd,buf,MAX_BUF_SIZE))<0){
-          CLog::Log("socket close by client or socket occur error","CSocket");
+          CLog::Log("socket close by client or socket occur error",getClassName());
           CSocketBase::Close(sockfd);
           pclient[i].fd=-1;
           //sockfdMap[sockfd]=-1;
@@ -287,7 +287,7 @@ void CSocket::epollLoop(){
     int nready=CSocketBase::Epoll_wait(epfd,events,MAX_USER_SIZE,-1);
 
     int sockfd;
-    for(int index=0;index<nready;index++){
+    for(int index=0;connfd!=-1&&index<nready;index++){
       sockfd=events[index].data.fd;
       if(sockfd==listenfd){//new connections
         socklen_t clilen=sizeof(clientaddr);
@@ -295,7 +295,7 @@ void CSocket::epollLoop(){
 
         std::string ip=inet_ntoa(clientaddr.sin_addr);
        
-        CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,"CSocket");
+        CLog::Log("new client connect,sockfd="+ToStr(connfd)+",ip="+ip,getClassName());
         
         ev.data.fd=connfd;//why set ev.data.fd eq newfd,and why send it to ctl function twices,first in newfd,second is newfd itself
         CSocketBase::Epoll_ctl(epfd,EPOLL_CTL_ADD,connfd,&ev);
@@ -303,7 +303,7 @@ void CSocket::epollLoop(){
         (*newConnects)(connfd,ip);
         continue;
       }else if(events[index].events&EPOLLHUP){//close by client
-        CLog::Log("socket close by client or socket occur error","CSocket");
+        CLog::Log("socket close by client or socket occur error",getClassName());
         CSocketBase::Epoll_ctl(epfd,EPOLL_CTL_DEL,sockfd,&ev);
         (*disconnects)(sockfd);
         if(0!=errno){

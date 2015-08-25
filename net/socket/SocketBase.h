@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <arpa/inet.h>
 #include <sys/epoll.h>
+#include <string>
 
 /*
  * data:2015-08-18
@@ -71,6 +72,10 @@ class CSocketBase{
     static ssize_t Writen(int sockfd,const char* vprt,size_t len);
 
     static ssize_t Recv(int sockfd,void *buf,size_t len,int flags);
+
+    static std::string getClassName(){
+      return "CSocketBase";
+    }
 
 
 };
