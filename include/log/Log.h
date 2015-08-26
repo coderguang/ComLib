@@ -8,8 +8,6 @@
 	#define LOG_DLL_API _declspec(dllexport)
 #elif defined(_WINDOWS)
 	#define LOG_DLL_API _declspec(dllimport)
-else
-	#define LOG_DLL_API 
 #endif
 
 
@@ -18,7 +16,11 @@ namespace GCommon{
 
 class CLog{
   public:
+#ifdef _WINDOWS
     static LOG_DLL_API void Log(std::string msg,std::string type="default");
+#else
+	static void Log(std::string msg,std::string type="default");
+#endif
 
 };
 
