@@ -1,26 +1,26 @@
 #ifndef _COMMON_LOG_LOG_H_
 #define _COMMON_LOG_LOG_H_
 
-#include <string>
-#include <iostream>
-
 #if defined(LOG_EXPORTS)&&defined(_WINDOWS)
-	#define LOG_DLL_API _declspec(dllexport)
+  #define LOG_DLL_API _declspec(dllexport)
 #elif defined(_WINDOWS)
-	#define LOG_DLL_API _declspec(dllimport)
+  #define LOG_DLL_API _declspec(dllimport)
 #endif
 
+
+#include <string>
+#include <iostream>
 
 namespace GCommon{
   namespace GLog{
 
-class CLog{
-  public:
-#ifdef _WINDOWS
-    static LOG_DLL_API void Log(std::string msg,std::string type="default");
+#ifdef LOG_DLL_API
+	class LOG_DLL_API CLog{
 #else
-	static void Log(std::string msg,std::string type="default");
+	class CLog{
 #endif
+  public:
+	static void Log(std::string msg,std::string type="default");
 
 };
 

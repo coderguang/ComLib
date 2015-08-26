@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8819776F-7CCC-45FD-902D-C60A2A6ECAE8}</ProjectGuid>
+    <ProjectGuid>{84A28620-3A9D-4C34-BC8A-8C8507309B54}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>log</RootNamespace>
   </PropertyGroup>
@@ -142,7 +142,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\log\Log.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

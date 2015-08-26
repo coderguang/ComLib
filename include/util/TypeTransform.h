@@ -8,6 +8,14 @@
  *e-mail:royalchen@royalchen.com
  * */
 
+
+#if defined(UTIL_EXPORTS)&&defined(_WINDOWS)
+	#define UTIL_DLL_API _declspec(dllexport)
+#elif defined(_WINDOWS)
+	#define UTIL_DLL_API _declspec(dllimport)
+#endif
+
+
 #include <sstream>
 #include <iostream>
 #include <ctime>
@@ -15,7 +23,11 @@
 namespace GCommon{
   namespace GUtil{
 
-class CTypeTransform{
+#ifdef UTIL_DLL_API
+	class UTIL_DLL_API CTypeTransform{
+#else
+	class CTypeTransform{
+#endif
   public:
     static std::string IntToStr(int value);
 

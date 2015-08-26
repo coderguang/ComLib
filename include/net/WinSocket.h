@@ -1,6 +1,12 @@
 #ifndef _COMMON_NET_WINSOCKET_WINSOCKET_H_
 #define _COMMON_NET_WINSOCKET_WINSOCKET_H_
 
+#if defined(WINSOCK_EXPORTS)&&defined(_WINDOWS)
+#define WINSOCK_DLL_API _declspec(dllexport)
+#elif defined(_WINDOWS)
+#define WINSOCK_DLL_API _declspec(dllimport)
+#endif
+
 #include <WinSock2.h>
 #include <string>
 
@@ -13,7 +19,14 @@ namespace GCommon{
 		namespace GSocket{
 
 #pragma comment(lib,"ws2_32.lib")
-class CWinSocket{
+
+
+#ifdef WINSOCK_DLL_API
+	class WINSOCK_DLL_API CWinSocket{
+#else
+	class CWinSocket{
+#endif
+
 public:
 	CWinSocket(char* host, int port, int family, int protocol, int sockType);
 	virtual ~CWinSocket();

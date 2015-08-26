@@ -9,13 +9,6 @@
  * because all code before the #include "stdafx.h" will be ignore!
 
  */
-#ifdef LOG_EXPORTS
-	#define LOG_DLL_API _declspec(dllexport)
-#else
-	#define LOG_DLL_API _declspec(dllimport)
-#endif
-
-
 using namespace GCommon::GLog;
 
 void CLog::Log(std::string msg, std::string type){

@@ -11,14 +11,14 @@ CWinSocket::CWinSocket(char* host, int port, int family, int protocol, int sockT
 	isClosed = false;
 	initSocket(host, port, family, protocol, sockType);
 }
-CWinSocket::~CWinSocket(){
+CWinSocket::~CWinSocket(){ 
 	if (!clientfd){
 		closesocket(clientfd);
 		WSACleanup();
 	}
 }
 
-std::string& CWinSocket::getClassName(){
+std::string& CWinSocket::getClassName(){ 
 	return className;
 }
 
