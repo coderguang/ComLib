@@ -9,7 +9,7 @@
 #elif defined(_WINDOWS)
 	#define LOG_DLL_API _declspec(dllimport)
 else
-	#define LOG_DLL_API NULL
+	#define LOG_DLL_API 
 #endif
 
 
