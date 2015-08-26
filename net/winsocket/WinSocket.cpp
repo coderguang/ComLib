@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "../../include/net/WinSocket.h"
 #include "../../include/log/Log.h"
+#include "../../include/net/WinSocket.h"
 
 using namespace GCommon::GNet::GSocket;
 using namespace GCommon::GUtil;
