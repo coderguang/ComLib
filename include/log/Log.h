@@ -4,12 +4,22 @@
 #include <string>
 #include <iostream>
 
+#if defined(LOG_EXPORTS)&&defined(_WINDOWS)
+	#define LOG_DLL_API _declspec(dllexport)
+#elif defined(_WINDOWS)
+	#define LOG_DLL_API _declspec(dllimport)
+else
+	#undef LOG_DLL_API
+#endif
+
+
 namespace GCommon{
   namespace GLog{
 
 class CLog{
   public:
-    static void Log(std::string msg,std::string type="default");
+    static LOG_DLL_API void Log(std::string msg,std::string type="default");
+
 };
 
   }

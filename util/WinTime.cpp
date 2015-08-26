@@ -3,6 +3,7 @@
 #include "../include/util/Time.h"
 /*
  *this version is use for util.dll
+ * * use _CRT_SECURE_NO_WARNINGS
  */
 
 using namespace GCommon::GUtil;
