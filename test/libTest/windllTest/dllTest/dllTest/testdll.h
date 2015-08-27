@@ -1,15 +1,17 @@
 #ifndef _TEST_DLL_H_
 #define _TEST_DLL_H_
 #include <Windows.h>
-#include "../../../../../include/log/Log.h"
-#include "../../../../../include/test/test.h"
-#include "../../../../../include/util/Time.h"
+#include <string>
+//don't need this header file
+//#include "../../../../../include/log/Log.h"
+//#include "../../../../../include/util/Time.h"
 //#include "../../../../../include/net/WinSocket.h"
-
+/*
 using namespace GCommon::GLog;
 using namespace GCommon::GUtil;
-//using namespace GCommon::GNet::GSocket;
-/**
+using namespace GCommon::GNet::GSocket;
+*/
+
 void testSock(){
 	
 	typedef void(*cs)(char* host, int port, int family, int protocol, int sockType);
@@ -26,17 +28,20 @@ void testSock(){
 
 
 
-	cs flog = (cs)GetProcAddress(hdll, "CWinSocket");
+	cs flog = (cs)GetProcAddress(hdll, "??0CWinSocket@GSocket@GNet@GCommon@@QEAA@PEADHHHH@Z");
 
 	if (flog == NULL){
-		std::cout << "load time faild!" << std::endl;
+		std::cout << "load socket faild!" << std::endl;
 	}
 	else{
-		std::cout << "good luck ! load time success!" << std::endl;
+		std::cout << "good luck ! socket time success!" << std::endl;
 	}
-	//flog();
+	char host[30] = "182.254.233.115";
+	//std::string host="182.254.233.115";
+	flog(host, 9200, AF_INET, 0, SOCK_STREAM);
+	
 }
-*/
+
 void testUtil(){
 	typedef std::string(*p_time)();
 	HINSTANCE hdll;
@@ -102,15 +107,15 @@ void testLog(){
 
 
 
-	p_Log flog = (p_Log)GetProcAddress(hdll, "CLog::Log");
+	p_Log flog = (p_Log)GetProcAddress(hdll, "?Log@CLog@GLog@GCommon@@SAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z");
 
 	if (flog == NULL){
-		std::cout << "load flog faild!" << std::endl;
+		std::cout << "load CLog::Log faild!" << std::endl;
 	}
 	else{
-		std::cout << "good luck ! load flog success!" << std::endl;
+		std::cout << "good luck ! load load CLog::Log success!" << std::endl;
 	}
-	//flog("yes", "are you ok");
+	flog("yes", "are you ok");
 }
 
 
