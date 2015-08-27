@@ -1,9 +1,9 @@
 #ifndef _COMMON_NET_WINSOCKET_WINSOCKET_H_
 #define _COMMON_NET_WINSOCKET_WINSOCKET_H_
 
-#if defined(WINSOCK_EXPORTS)&&defined(_WINDOWS)
+#if defined(WINSOCK_EXPORTS)&&(defined(WIN32)||defined(WIN64))
 #define WINSOCK_DLL_API _declspec(dllexport)
-#elif defined(_WINDOWS)
+#elif !defined(_LIB)&&(defined(WIN32)||defined(WIN64))&&!defined(_USRDLL)
 #define WINSOCK_DLL_API _declspec(dllimport)
 #endif
 
