@@ -16,12 +16,14 @@ namespace GCommon{
   namespace GLog{
 	 
 #ifdef LOG_DLL_API
-	class LOG_DLL_API CLog{
-#else 
-	class CLog{
+  class LOG_DLL_API CLog{
+#else 	
+  class CLog{
 #endif
   public:
-	static void Log(std::string msg,std::string type="default");
+    static void Log(std::string msg,std::string type="default");
+
+    static void Print(std::string msg,std::string type="default");
 
 };
 
