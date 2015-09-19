@@ -3418,3 +3418,20 @@ Connection to 59.32.253.53 139 port [tcp/netbios-ssn] succeeded!
 Connection to 59.32.253.62 1900 port [tcp/ssdp] succeeded!
 Connection to 59.32.253.63 1900 port [tcp/ssdp] succeeded!
 Connection to 59.32.253.83 135 port [tcp/epmap] succeeded!
+Connection to 59.32.253.98 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.119 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.147 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.162 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.165 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.167 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.177 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.182 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.184 135 port [tcp/epmap] succeeded!
+Connection to 59.32.253.186 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.192 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.194 135 port [tcp/epmap] succeeded!
+Connection to 59.32.253.196 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.253.236 1900 port [tcp/ssdp] succeeded!
+Connection to 59.32.254.154 135 port [tcp/epmap] succeeded!
+Connection to 59.32.254.154 139 port [tcp/netbios-ssn] succeeded!
+end scanning...

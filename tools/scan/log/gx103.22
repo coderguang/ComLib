@@ -7065,3 +7065,6 @@ Connection to 103.22.196.13 3389 port [tcp/ms-wbt-server] succeeded!
 Connection to 103.22.196.14 3389 port [tcp/ms-wbt-server] succeeded!
 Connection to 103.22.196.17 3389 port [tcp/ms-wbt-server] succeeded!
 Connection to 103.22.197.27 3389 port [tcp/ms-wbt-server] succeeded!
+Connection to 103.22.225.150 135 port [tcp/epmap] succeeded!
+Connection to 103.22.225.150 445 port [tcp/microsoft-ds] succeeded!
+Connection to 103.22.225.150 3389 port [tcp/ms-wbt-server] succeeded!
