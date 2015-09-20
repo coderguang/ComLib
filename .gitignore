@@ -5,8 +5,8 @@
 *.suo
 *.user
 *.sln.docstates
-*/tools/scan/log/*
-*/Db/config
+/tools/scan/log/
+/Db/config
 
 # Build results
 
