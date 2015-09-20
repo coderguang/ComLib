@@ -8,7 +8,7 @@ port=(135 137 138 139 445 593 1025 1900 2745 3127 3389 6129)
 one=1
 len=`expr ${#port[@]} - 1`
 point="."
-dir="log/"
+dir="../../../data/hacker/log/"
 
 echo "start scanning..." >>$dir$pos$front
 

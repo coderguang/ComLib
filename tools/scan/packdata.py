@@ -7,16 +7,20 @@ import re
 
 pattern=re.compile(r'\d+')
 
-file=open("log.txt","r")
+fileReader=open("../../../data/hacker/log.txt","r")
+fileWriter=open("../../../data/hacker/data.txt","w+")
 while True:
-  line=file.readline();
+  line=fileReader.readline();
   if line:
     datas=pattern.findall(line)
     if datas:
-      print '.'.join(datas[:-1]) ,
-      print datas[-1]
+      ipStr='.'.join(datas[:-1])
+      portStr=datas[-1]
+      fileWriter.write(ipStr+' '+portStr+'\n')
+      print ipStr,portStr
   else:
     break
 
-file.close()
+fileReader.close()
+fileWriter.close()
 

@@ -1,5 +1,2 @@
 #!/bin/bash
-cd log
-cat * >>log.txt
-mv log.txt ../
-cd ..
+cat ../../../data/hacker/log/* > ../../../data/hacker/log.txt

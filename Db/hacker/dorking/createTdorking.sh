@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../../config
+source ../../../../config/dbconfig
 
 mysql -h $host -u$user -p$passwd  <<EOF 
 

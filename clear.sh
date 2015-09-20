@@ -17,4 +17,3 @@ runPath=$(cd `dirname $0`;pwd)
 
 fileClear $runPath
 
-cat tools/scan/log/g*
