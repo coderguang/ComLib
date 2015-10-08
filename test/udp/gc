@@ -1,0 +1,5 @@
+clang++ -g server.cpp -o server -std=c++11 ../../lib/libsock.a ../../lib/liblog.a
+
+echo "client"
+
+clang++ -g client.cpp -o client -std=c++11 ../../lib/libsock.a ../../lib/liblog.a
