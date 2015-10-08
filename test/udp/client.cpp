@@ -29,8 +29,11 @@ int main(int argc,char **argv){
   char msg[1024];
   char sendBuf[1024]="hello,udp";
 
+  CSocketBase::Connect(sockfd,(struct sockaddr*)&servaddr,sizeof(servaddr));
+
   for(int i=0;i<10;i++){
-    sendto(sockfd,sendBuf,1024,0,(struct sockaddr*)&servaddr,len);
+    //sendto(sockfd,sendBuf,1024,0,(struct sockaddr*)&servaddr,len);
+    CSocketBase::Writen(sockfd,sendBuf,sizeof(sendBuf));
     
   }
 
