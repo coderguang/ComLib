@@ -59,11 +59,11 @@ int main(int argc,char **argv){
   struct sockaddr_in sin;
   struct pseudo_header psh;
 
-  strcpy(source_ip,"182.254.233.115");
+  strcpy(source_ip,"182.254.233.114");
  
   sin.sin_family =AF_INET;
-  sin.sin_port = htons(80);
-  sin.sin_addr.s_addr=inet_addr("1.2.3.4");
+  sin.sin_port = htons(9200);
+  sin.sin_addr.s_addr=inet_addr("182.254.233.115");
 
   memset(datagram,0,4096);
 
@@ -71,7 +71,7 @@ int main(int argc,char **argv){
   iph->version=4;
   iph->tos=0;
   iph->tot_len=sizeof(struct ip)+sizeof(struct tcphdr);
-  iph->id=htons(54321);
+  iph->id=htons(9200);
   iph->frag_off=0;
   iph->ttl=255;
   iph->protocol=IPPROTO_TCP;
@@ -81,8 +81,8 @@ int main(int argc,char **argv){
 
   iph->check=csum((unsigned short*)datagram,iph->tot_len>>1);
 
-  tcph->source=htons(1234);
-  tcph->dest=htons(80);
+  tcph->source=htons(9200);
+  tcph->dest=htons(9200);
   tcph->seq=0;
   tcph->ack_seq=0;
   tcph->doff=5;
@@ -114,12 +114,15 @@ int main(int argc,char **argv){
     exit(0);
   }
 
+  //while(counter<100000){
+  while(1){
 
-  if(sendto(s,datagram,iph->tot_len,0,(struct sockaddr *)&sin,sizeof(sin))<0){
-    printf("Error when send\n");
-  }else{
-    counter++;
-    printf("Packet send ,num=%d,\n\n",counter);
+    if(sendto(s,datagram,iph->tot_len,0,(struct sockaddr *)&sin,sizeof(sin))<0){
+      printf("Error when send\n");
+    }else{
+      counter++;
+      printf("Packet send ,num=%d,\n\n",counter);
+    }
   }
 
   return 0;
