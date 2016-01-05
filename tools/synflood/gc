@@ -1,0 +1,3 @@
+rm *~
+g++ -g t.cpp -o t ../../lib/libutil.a
+
