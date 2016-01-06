@@ -3,7 +3,7 @@ set QQPATH=HKEY_CURRENT_USER\SOFTWARE\Tencent\QQPCMgr
 
 @rem find dir in regedit
 for /f "tokens=2,* delims=Z " %%i in ('Reg Query "%QQPATH%" /v "InstallDir" ') do set QQDIR=%%j
-@rem echo %QQDIR%
+echo %QQDIR%>dir.txt
 
 @rem find what driver in
 for /f "tokens=1 delims=: " %%i in ("%QQDIR%") do set QQDRIVER=%%i
@@ -16,4 +16,5 @@ cd %QQDIR%
 
 start Uninst.exe
 
-@rem pause
+
+pause
