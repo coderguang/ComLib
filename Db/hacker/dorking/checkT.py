@@ -1,4 +1,18 @@
-#!/usr/bin/python
+#python
+#***********************************************
+#
+#      Filename: checkT.py
+#
+#      Author: coderguang 
+#      Email: royalchen@royalchen.com
+#      website: www.royalchen.com
+#      Description: ----
+#      example: python checkT.py 3389
+
+#     Create: 2016-01-13 20:29:23
+#     Last Modified: 2016-01-13 20:29:23
+#***********************************************
+
 
 import ConfigParser
 import MySQLdb

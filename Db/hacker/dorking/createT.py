@@ -1,4 +1,22 @@
-#!/usr/bin/python
+#python
+#***********************************************
+#
+#      Filename: createT.py
+#
+#      Author: coderguang 
+#      Email: royalchen@royalchen.com
+#      website: www.royalchen.com
+#      Description: ----
+#      example: python createT.py
+
+#     Create: 2016-01-13 20:30:35
+#     Last Modified: 2016-01-13 20:30:35
+#***********************************************
+
+
+#
+#
+#
 
 import ConfigParser
 import MySQLdb

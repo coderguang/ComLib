@@ -1,4 +1,18 @@
-#!/usr/bin/python
+#python
+#***********************************************
+#
+#      Filename: writeT.py
+#
+#      Author: coderguang 
+#      Email: royalchen@royalchen.com
+#      website: www.royalchen.com
+#      Description: ----
+#      example: change fileReader to your data file path
+
+#     Create: 2016-01-13 20:31:18
+#     Last Modified: 2016-01-13 20:31:18
+#***********************************************
+
 
 import ConfigParser
 import MySQLdb
