@@ -7,7 +7,7 @@
 #      Email: royalchen@royalchen.com
 #      website: www.royalchen.com
 #      Description: ----
-#      example: change fileReader to your data file path
+#      example: change fileReader to your data file path in dorking.ini
 
 #     Create: 2016-01-13 20:31:18
 #     Last Modified: 2016-01-13 20:31:18
@@ -26,6 +26,7 @@ localConfig.readfp(open('dorking.ini'))
 
 globalConfigPath=localConfig.get("dorkingConfig","dbconfig")
 dbname=localConfig.get("dorkingConfig","dbname")
+ipSrc=localConfig.get("dorkingFile","datafile")
 
 globalConfig=ConfigParser.ConfigParser()
 globalConfig.readfp(open(globalConfigPath))
@@ -47,7 +48,7 @@ pattern=re.compile(r'\d+')
 
 #get data file
 
-fileReader=open("../../../../data/hacker/data.txt")
+fileReader=open(ipSrc)
 while True:
   line=fileReader.readline();
   if line:
