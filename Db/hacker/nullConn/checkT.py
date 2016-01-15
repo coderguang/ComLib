@@ -20,24 +20,17 @@ import re
 import sys
 
 #read config.ini
+config=ConfigParser.ConfigParser()
+config.readfp(open('../../../../config.ini'))
 
-localConfig=ConfigParser.ConfigParser()
-localConfig.readfp(open('dorking.ini'))
-
-globalConfigPath=localConfig.get("dorkingConfig","dbconfig")
-dbname=localConfig.get("dorkingConfig","dbname")
-
-globalConfig=ConfigParser.ConfigParser()
-globalConfig.readfp(open(globalConfigPath))
-
-host=globalConfig.get("dbconfig","host") 
-user=globalConfig.get("dbconfig","user")
-passwd=globalConfig.get("dbconfig","passwd")
+host=config.get("dbconfig","host")
+user=config.get("dbconfig","user")
+passwd=config.get("dbconfig","passwd")
 
 #connect to mysql db
 
 conn=MySQLdb.connect(host=host,user=user,passwd=passwd)
-conn.select_db(dbname)
+conn.select_db('hacker')
 
 #get curs point
 curs=conn.cursor()
