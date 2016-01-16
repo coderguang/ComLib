@@ -50,12 +50,12 @@ pattern=re.compile(r'\d+')
 		
 fileReader=open(ipSrc)		
 while True:		
- line=fileReader.readline();		
+  line=fileReader.readline();		
   if line:		
     datas=pattern.findall(line)		
     if datas:		
       tableName="dorking_"+str(datas[0])		
-     ipStr='.'.join(datas[:-1])		
+      ipStr='.'.join(datas[:-1])		
       portStr=datas[-1]		
       #at first ,encure the tables has no this record		
       checkStr="select ip from "+tableName+" where ip=\'"+ipStr+"\'"		
@@ -64,14 +64,14 @@ while True:
       numrows=int(curs.rowcount)		
       if numrows==0:		
         #insert a null record at first		
-       insertStr="insert into "+tableName+" values(\'"+ipStr+"\',0,0,0,0,0,0,0,0,0,0,0,0,NULL,NULL);"		
+        insertStr="insert into "+tableName+" values(\'"+ipStr+"\',0,0,0,0,0,0,0,0,0,0,0,0,NULL,NULL);"		
         #insert/update the record to db		
         curs.execute(insertStr)		
       #commit the change		
       conn.commit()		
       #update the recored		
-     updateStr="update "+tableName+" set "+"p"+str(portStr)+"=1 where ip=\'"+ipStr+"\'"		
-     curs.execute(updateStr)		
+      updateStr="update "+tableName+" set "+"p"+str(portStr)+"=1 where ip=\'"+ipStr+"\'"		
+      curs.execute(updateStr)		
       conn.commit()		
   else:		
    break;   		
