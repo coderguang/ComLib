@@ -28,6 +28,7 @@ localConfig.readfp(open('nullConn.ini'))
 
 globalFile=localConfig.get("nullConnConfig","dbconfig")
 dbname=localConfig.get("nullConnConfig","dbname")
+tableName=localConfig.get("nullConnConfig","tablename")
 
 
 config=ConfigParser.ConfigParser()
@@ -47,7 +48,7 @@ curs=conn.cursor()
 
 #create tables
 
-createTableFront="create table if not exists null_conn"
+createTableFront="create table if not exists "+tableName
 
 createTableEnd="(ip varchar(32) not null primary key,os varchar(32),user_passwd varchar(5096));"
 

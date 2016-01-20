@@ -29,6 +29,7 @@ localConfig.readfp(open('nullConn.ini'))
 globalFile=localConfig.get("nullConnConfig","dbconfig")
 dbname=localConfig.get("nullConnConfig","dbname")
 packfile=localConfig.get("nullConnConfig","packfile")
+tableName=localConfig.get("nullConnConfig","tablename")
 
 
 config=ConfigParser.ConfigParser()
@@ -48,8 +49,15 @@ curs=conn.cursor()
 
 #create tables
 
-createStr=createTableFront+createTableEnd
-curs.execute(createStr)
+fileReader=open(packfile)
+while True:
+  line=fileReader.readline();
+  if line:
+    insertStr="insert into "+tableName+" values(\'"+line+"\','','')"
+    curs.execute(insertStr)
+    conn.commit()
+  else:
+    break;
 
 #free the curs
 curs.close();
