@@ -19,8 +19,9 @@
 
 using namespace std;
 
-static const string src="../../../../result.txt";
-static const string dest="../../../../packResult.txt";
+static const string src="../../../../nullConn.txt";
+static const string dest="../../../../packNullConn.txt";
+static const string key="ÃüÁî";
 
 
 int main(int argc,char **argv){
@@ -32,7 +33,7 @@ int main(int argc,char **argv){
   std::string curline;
   
   while(fin>>curline){
-    if(curline.find("ÃüÁî")!=string::npos){
+    if(curline.find(key)!=string::npos){
       //cout<<lastline<<endl;
       fout<<lastline<<endl;
     }
