@@ -1,9 +1,13 @@
  
- set RESULT=result.txt
+ set RESULT=../../../nullConn.txt
+ set DORKING=../../../dorking.txt
  
- for /f "delims= " %%i in (../../../dorking.txt) do (
+ title nullConn.bat
+ 
+ for /f "delims= " %%i in (%DORKING%) do (
 	echo %%i >>%RESULT%
-	net use \\%%i\ipc$ "" /user:"" >>%RESULT% 2>&1
+	net use \\%%i\ipc$ "" /user:""
+	
  )
  
  pause

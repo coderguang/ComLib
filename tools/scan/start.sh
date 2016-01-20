@@ -41,7 +41,7 @@
 #./scan.sh 116.23 unknow &
 #./scan.sh 116.24 unknow &
 
-
+ignore(){
 ./scan.sh 116.25 unknow &
 ./scan.sh 116.26 unknow &
 ./scan.sh 116.27 unknow &
