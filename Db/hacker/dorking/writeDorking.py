@@ -54,7 +54,8 @@ while True:
   if line:		
     datas=pattern.findall(line)		
     if datas:		
-      tableName="dorking_"+str(datas[0])		
+      #tableName="dorking_"+str(datas[0])		
+      tableName="dorking"
       ipStr='.'.join(datas[:-1])		
       portStr=datas[-1]		
       #at first ,encure the tables has no this record		
