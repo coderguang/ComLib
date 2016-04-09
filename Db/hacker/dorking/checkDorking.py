@@ -44,17 +44,16 @@ curs=conn.cursor()
 
 pattern=re.compile(r'\d+')
 
-for i in range(254):
-  tableName="dorking_"+str(i+1)
-  checkStr="select ip from "+tableName+" where p"+str(sys.argv[1])+"='1\'"
-  curs.execute(checkStr)
-  #get the result rowcount
-  numrows=int(curs.rowcount)
-  results=curs.fetchall()
-  for line in results:
-    ipStr=line[0]
-    print ipStr
-      
+tableName="dorking"
+checkStr="select ip from "+tableName+" where p"+str(sys.argv[1])+"='1\'"
+curs.execute(checkStr)
+#get the result rowcount
+numrows=int(curs.rowcount)
+results=curs.fetchall()
+for line in results:
+  ipStr=line[0]
+  print ipStr
+    
 #free the curs
 curs.close();
 
