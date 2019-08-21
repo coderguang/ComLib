@@ -289,6 +289,8 @@ namespace Json {
       ///
       /// Equivalent to jsonvalue[jsonvalue.size()] = value;
       Value &append( const Value &value );
+	  //remove item from Json::arrayValue 
+	  bool removeIndex(ArrayIndex index, Value* removed);
 
       /// Access an object value by name, create a null member if it does not exist.
       Value &operator[]( const char *key );
@@ -1067,3 +1069,4 @@ public: // overridden from ValueArrayAllocator
 
 
 #endif // CPPTL_JSON_H_INCLUDED
+

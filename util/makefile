@@ -3,4 +3,4 @@
 *.o : *.cpp
 	clang++ -Wall -c -g Time.cpp TypeTransform.cpp -std=c++11
 clean :
-	rm -rf *.o *~
+	-rm -rf *.o *~

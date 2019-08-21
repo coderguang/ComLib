@@ -3,5 +3,5 @@
 *.o : *.cpp 
 	clang++ -Wall -c -fPIC *.cpp -std=c++11 
 clean :
-	rm *.o *~
+	-rm *.o *~
 
